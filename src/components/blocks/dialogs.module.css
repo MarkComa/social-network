@@ -1,0 +1,110 @@
+.dialogs {
+  margin: 17px 19px 11px 2px;
+  width: 90%;
+  background-color: #fff;
+
+  border-radius: 45px;
+}
+.content {
+  display: flex;
+  min-height: calc(100vh - 20px);
+}
+.title {
+  margin: 25px;
+  color: #aaa;
+  font-size: 36px;
+}
+.list {
+  margin-left: 25px;
+  margin-right: 10px;
+  min-width: 200px;
+  height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.list::-webkit-scrollbar {
+  width: 0;
+}
+
+.list__item {
+  margin-bottom: 22px;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+.list__item__link {
+  padding: 10px;
+  font-size: 16px;
+  text-decoration: none;
+  color: #000;
+}
+
+.chat {
+  width: 100%;
+  margin: 0 auto;
+  min-height: 100%;
+  position: relative;
+}
+
+.message {
+  overflow-y: auto;
+  margin-bottom: 10px;
+
+  height: calc(100vh - 350px);
+}
+
+.myMessage,
+.incomingMessage {
+  margin: 0 25px 20px;
+  padding: 15px;
+
+  color: #000;
+  font-size: 16px;
+  word-break: break-all;
+}
+
+.incomingMessage {
+  background: #2989f8;
+  border-radius: 30px;
+
+  float: left;
+  clear: both;
+}
+
+.myMessage {
+  background: #24ebb9;
+  border-radius: 30px;
+  float: right;
+  clear: both;
+}
+.actionMessage {
+  display: block;
+  position: absolute;
+  bottom: 150px;
+  right: 0;
+  left: 0;
+}
+.textarea {
+  display: block;
+
+  margin: 10px auto;
+  padding: 10px;
+
+  width: 90%;
+  min-height: 76px;
+
+  font-size: 16px;
+
+  resize: vertical;
+}
+.btn {
+  display: block;
+  margin-left: 25px;
+  padding: 10px;
+
+  background-color: #2989f8;
+  border-radius: 20px;
+
+  color: #fff;
+  font-size: 16px;
+}

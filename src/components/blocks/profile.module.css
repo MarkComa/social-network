@@ -1,0 +1,72 @@
+.profile {
+  margin: 17px 19px 11px 2px;
+  width: 90%;
+  background-color: #fff;
+  border-radius: 45px;
+  font-size: 16px;
+  overflow-y: auto;
+}
+.profile__user {
+  max-width: 1200px;
+  margin: 25px auto;
+  display: grid;
+  align-content: center;
+  height: 90vh;
+
+  grid-template-columns: 300px auto;
+  grid-auto-rows: 50px;
+  grid-column-gap: 20px;
+  row-gap: 10px;
+}
+.avatar {
+  margin: auto;
+
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 8;
+}
+.status {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.contact {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 8;
+}
+.fName {
+  text-align: center;
+
+  color: #202020;
+  font-size: 24px;
+
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 8;
+  grid-row-end: 9;
+}
+.job {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 9;
+  grid-row-end: 11;
+}
+.jobDescription {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 11;
+  grid-row-end: 14;
+}
+.aboutMe {
+  color: #202020;
+  font-size: 19px;
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 8;
+  grid-row-end: 14;
+}
