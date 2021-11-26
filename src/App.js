@@ -11,7 +11,7 @@ import Auth from "./components/auth";
 import { initializeApp } from "./redux/reducers/appReducer";
 import { connect } from "react-redux";
 import Preloader from "./components/preloader";
-
+//12345
 class App extends React.Component {
   debugger;
   componentDidMount() {
