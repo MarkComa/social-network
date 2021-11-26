@@ -13,7 +13,7 @@ import {
   getCurrentPage,
   getIsFetching,
   getFollowingInProgress,
-} from "../../redux/selects/user-selects";
+} from "../../redux/selectors/user-selectors";
 
 import Users from "../users";
 import Preloader from "../preloader";
