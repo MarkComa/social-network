@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./blocks/profile.module.css";
 import Preloader from "./preloader";
-import Status from "./status";
+import ProfileStatus from "./profileStatus";
 
 const Profile = (props) => {
   debugger;
@@ -24,7 +24,7 @@ const Profile = (props) => {
           className={style.avatar}
         />
         <div className={style.status}>
-          <Status
+          <ProfileStatus
             status={props.status}
             updateUserStatus={props.updateUserStatus}
           />

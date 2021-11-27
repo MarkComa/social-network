@@ -11,10 +11,10 @@
   margin: 25px auto;
   display: grid;
   align-content: center;
-  height: 90vh;
+
 
   grid-template-columns: 300px auto;
-  grid-auto-rows: 50px;
+  grid-auto-rows: 40px;
   grid-column-gap: 20px;
   row-gap: 10px;
 }
