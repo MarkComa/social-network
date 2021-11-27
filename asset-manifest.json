@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/social-network/static/css/main.2cf7de68.chunk.css",
+    "main.js": "/social-network/static/js/main.54f14d4a.chunk.js",
+    "main.js.map": "/social-network/static/js/main.54f14d4a.chunk.js.map",
+    "runtime-main.js": "/social-network/static/js/runtime-main.549c3cb4.js",
+    "runtime-main.js.map": "/social-network/static/js/runtime-main.549c3cb4.js.map",
+    "static/js/2.75c2ef63.chunk.js": "/social-network/static/js/2.75c2ef63.chunk.js",
+    "static/js/2.75c2ef63.chunk.js.map": "/social-network/static/js/2.75c2ef63.chunk.js.map",
+    "static/js/3.daad2978.chunk.js": "/social-network/static/js/3.daad2978.chunk.js",
+    "static/js/3.daad2978.chunk.js.map": "/social-network/static/js/3.daad2978.chunk.js.map",
+    "index.html": "/social-network/index.html",
+    "static/css/main.2cf7de68.chunk.css.map": "/social-network/static/css/main.2cf7de68.chunk.css.map",
+    "static/js/2.75c2ef63.chunk.js.LICENSE.txt": "/social-network/static/js/2.75c2ef63.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/social-network/static/media/bg-lines.50c92441.svg",
+    "static/media/login.a0b70e93.svg": "/social-network/static/media/login.a0b70e93.svg",
+    "static/media/logout.c2dce12f.svg": "/social-network/static/media/logout.c2dce12f.svg",
+    "static/media/preloader.f73779b8.svg": "/social-network/static/media/preloader.f73779b8.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.549c3cb4.js",
+    "static/js/2.75c2ef63.chunk.js",
+    "static/css/main.2cf7de68.chunk.css",
+    "static/js/main.54f14d4a.chunk.js"
+  ]
+}
