@@ -1,45 +1,47 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Login from "./login";
+import logo from "../assets/images/logo.svg";
+import user from "../assets/images/user.svg";
+import cube from "../assets/images/cube.svg";
+import dashboard from "../assets/images/dashboard.svg";
+import charts from "../assets/images/charts.svg";
+import wallet from "../assets/images/wallet.svg";
 
 const Navbar = (props) => {
   return (
     <div className="dashboard__nav">
       <nav className="nav">
         <NavLink to="/dashboard">
-          <img
-            src="/assets/images/logo.svg"
-            alt="logo"
-            className="dashboard__logo"
-          />
+          <img src={logo} alt="logo" className="dashboard__logo" />
         </NavLink>
 
         <ul className="nav__item-top">
           <li className="nav__list-top">
             <NavLink to={"/profile/" + props.userIdMe}>
-              <img src="/assets/images/user.svg" alt="user" />
+              <img src={user} alt="user" />
             </NavLink>
           </li>
 
           <li className="nav__list-top">
             <NavLink to="/friends">
-              <img src="/assets/images/cube.svg" alt="cube" />
+              <img src={cube} alt="cube" />
             </NavLink>
           </li>
 
           <li className="nav__list-top">
             <NavLink to="/dashboard">
-              <img src="/assets/images/dashboard.svg" alt="dashboard" />
+              <img src={dashboard} alt="dashboard" />
             </NavLink>
           </li>
           <li className="nav__list-top">
             <NavLink to="/dialogs">
-              <img src="/assets/images/wallet.svg" alt="wallet" />
+              <img src={wallet} alt="wallet" />
             </NavLink>
           </li>
           <li className="nav__list-top">
             <NavLink to="/users">
-              <img src="/assets/images/charts.svg" alt="charts" />
+              <img src={charts} alt="charts" />
             </NavLink>
           </li>
         </ul>
