@@ -51,25 +51,3 @@ export const sendMessageClick = (id, newMessageText) => {
 };
 
 export default dialogReducer;
-
-/*debugger;
-        let newMessage = { message: state.newMessageText };
-        let stateCopy = { ...state };
-        stateCopy.friends = [...state.friends];
-        stateCopy.friends.map((f) => {
-          if (f.id === action.id) {
-            f.messages.push(newMessage);
-          }
-        });
-
-        stateCopy.newMessageText = "";
-        return stateCopy;*/
-/* ...state.friends.map((f) => {
-              if (f.id === action.id) {
-                f.messages.push(newMessage);
-                return { ...f };
-              }
-              return f;
-            }),
-          },
-          newMessageText: "",*/
