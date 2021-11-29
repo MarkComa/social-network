@@ -2,7 +2,7 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { maxLengthCreator, required } from "../utils/validators/validators";
 import style from "./blocks/dialogs.module.css";
-import { Textarea } from "./formControls/formsControls";
+import { Textarea } from "./common/formsControls";
 
 const MessageList = (props) => {
   return props.messages.map((m) => {

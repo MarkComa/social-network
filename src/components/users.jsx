@@ -1,22 +1,16 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import style from "./blocks/users.module.css";
+import Pagination from "./common/pagginator";
+import User from "./user";
 
 const Users = (props) => {
-  let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
-  let pages = [];
-  for (let i = 1; i <= pageCount; i++) {
-    pages.push(i);
-  }
-
-  let currentPage = props.currentPage;
 
   return (
     <div className={style.users}>
       {props.users.map((u) => (
         <div key={u.id} className={style.user}>
           <div className={style.user__left}>
-            <NavLink to={`/profile/${u.id}`}>
+            {/* <NavLink to={`/profile/${u.id}`}>
               <img
                 className={style.user__avatar}
                 src={
@@ -26,7 +20,8 @@ const Users = (props) => {
                 }
                 alt="avatar"
               />
-            </NavLink>
+            </NavLink> */}
+            <User id={u.id} name={u.name} photo={u.photos.small} status={u.status}/>
             <div>
               {u.followed ? (
                 <button
@@ -51,37 +46,13 @@ const Users = (props) => {
               )}
             </div>
           </div>
-          <div className={style.user__info}>
+          {/* <div className={style.user__info}>
             <div className={style.fullname}>{u.name}</div>
             <div>{u.status}</div>
-
-            <div>"u.location.country"</div>
-            <div>"u.location.city"</div>
-          </div>
+          </div> */}
         </div>
       ))}
-
-      <div className={style.center}>
-        {pages.map((p) => {
-          if (
-            (p < currentPage + 3 && p > currentPage - 3) ||
-            p === 1 ||
-            p === pages.length
-          ) {
-            return (
-              <button
-                className={style.btn__page}
-                key={p}
-                onClick={() => {
-                  props.onPageChanged(p);
-                }}
-              >
-                {p}
-              </button>
-            );
-          } else return <></>;
-        })}
-      </div>
+      <Pagination currentPage={props.currentPage} onPageChanged={props.onPageChanged} totalUsersCount={props.totalUsersCount} pageSize={props.pageSize}/>
     </div>
   );
 };
