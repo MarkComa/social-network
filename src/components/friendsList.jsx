@@ -1,16 +1,11 @@
 import React from "react";
-import Friend from "./friend";
-
+import style from "./blocks/dialogs.module.css";
 const FriendsList = (props) => {
-    let friendEl = props.friends.map((f) => {
-
-    return <Friend key={f.id} name={f.name} fname={f.fname} avatar={f.avatar} id={f.id} />;
-  });
-
   return (
-    <section className="friends">
-
-      <div className="friendsList">{friendEl}</div>
+    <section className={style.dialogs}>
+      <h1 className={style.title}>Мои Друзья</h1>
+      <div className={style.content}></div>
+      <button onClick={props.setUsers}>Set Users Followed</button>
     </section>
   );
 };

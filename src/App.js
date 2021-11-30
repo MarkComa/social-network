@@ -2,7 +2,7 @@ import "./App.css";
 import React from "react";
 import NavbarСontainer from "./components/componentConteiner/navbarСontainer";
 import DashboardContainer from "./components/componentConteiner/dashboardContainer";
-import Friends from "./components/friends";
+import FriendsContainer from "./components/componentConteiner/friendsContainer";
 import ChatContainer from "./components/componentConteiner/chatContainer";
 import { Route } from "react-router-dom";
 import UsersContainer from "./components/componentConteiner/usersContainer";
@@ -26,7 +26,7 @@ class App extends React.Component {
       <div className="dashboard">
         <NavbarСontainer />
         <Route path="/dialogs/:friendId?" render={() => <ChatContainer />} />
-        <Route path="/friends" render={() => <Friends />} />
+        <Route path="/friends" render={() => <FriendsContainer />} />
         <Route path="/dashboard" render={() => <DashboardContainer />} />
         <Route path="/users" render={() => <UsersContainer />} />
         <Route path="/profile/:userId?" render={() => <ProfileContainer />} />

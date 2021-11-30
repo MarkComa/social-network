@@ -1,72 +1,33 @@
+import { usersAPI } from "../../api/api";
+
+let SET_USERS = "SET-USERS";
+
 let initialState = {
-  friends: [
-    {
-      name: "Александр",
-      fname: "Фамилия",
-      avatar: "https://via.placeholder.com/150",
-      id: "id1",
-    },
-
-    {
-      name: "Алексей",
-      fname: "Фамилия",
-      avatar: "https://via.placeholder.com/150",
-      id: "id3",
-    },
-
-    {
-      name: "Дмитрий",
-      fname: "Фамилия",
-      avatar: "https://via.placeholder.com/150",
-      id: "id2",
-    },
-    {
-      name: "Владимир",
-      fname: "Фамилия",
-      avatar: "https://via.placeholder.com/150",
-      id: "id4",
-    },
-    {
-      name: "Сергей",
-      fname: "Фамилия",
-      avatar: "https://via.placeholder.com/150",
-      id: "id5",
-    },
-    {
-      name: "Андрей",
-      fname: "Фамилия",
-      avatar: "https://via.placeholder.com/150",
-      id: "id6",
-    },
-    {
-      name: "Кирилл",
-      fname: "Фамилия",
-      avatar: "https://via.placeholder.com/150",
-      id: "id7",
-    },
-    {
-      name: "Виктор",
-      fname: "Фамилия",
-      avatar: "https://via.placeholder.com/150",
-      id: "id8",
-    },
-    {
-      name: "Максим",
-      fname: "Фамилия",
-      avatar: "https://via.placeholder.com/150",
-      id: "id9",
-    },
-    {
-      name: "Антон",
-      fname: "Фамилия",
-      avatar: "https://via.placeholder.com/150",
-      id: "id10",
-    },
-  ],
+  users: [],
+  pageSize: 15,
+  totalUsersCount: 0,
+  currentPage: 1,
 };
 
-const friendsReducer = (state = initialState) => {
-  return state;
+const friendsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case SET_USERS: {
+      return {
+        ...state,
+        users: action.users.filter(action.users.followed === true),
+      };
+    }
+    default:
+      return state;
+  }
 };
 
+export const setUsers = (users) => ({ type: SET_USERS, users });
+
+export const requestFollowingUsers = (pageSize, currentPage) => {
+  return async (dispatch) => {
+    let data = await usersAPI.getUsers(pageSize, currentPage);
+    dispatch(setUsers(data.items));
+  };
+};
 export default friendsReducer;
