@@ -13,13 +13,11 @@ import { connect } from "react-redux";
 import Preloader from "./components/preloader";
 //12345
 class App extends React.Component {
-  debugger;
   componentDidMount() {
     this.props.initializeApp();
   }
 
   render() {
-    debugger;
     if (!this.props.initialized) {
       return <Preloader isFetching="true" />;
     }

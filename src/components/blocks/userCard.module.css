@@ -1,0 +1,41 @@
+.user {
+  position: relative;
+  padding: 10px;
+  border: #202020 solid 1px;
+  border-radius: 15px;
+  display: flex;
+  height: 250px;
+}
+.user__item {
+  display: flex;
+  margin: 0 30%;
+}
+
+.user__info {
+  margin-left: 10px;
+  margin-top: 10px;
+  display: block;
+}
+.user__avatar {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 15px;
+  border-radius: 50%;
+}
+
+.btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  width: 90px;
+  background-color: #202020;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 16px;
+}
+
+.fullname {
+  padding-top: 10px;
+  font-size: 20px;
+}

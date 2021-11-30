@@ -4,7 +4,6 @@ import Preloader from "./preloader";
 import ProfileStatus from "./profileStatus";
 
 const Profile = (props) => {
-  debugger;
   if (!props.profile) {
     return <Preloader isFetching={props.isFetching} />;
   }
