@@ -1,6 +1,6 @@
 import { usersAPI } from "../../api/api";
 
-let SET_USERS = "SET-USERS";
+let SET_USERS = "friendsReducer/SET-USERS";
 
 let initialState = {
   users: [],
@@ -14,7 +14,7 @@ const friendsReducer = (state = initialState, action) => {
     case SET_USERS: {
       return {
         ...state,
-        users: action.users.filter(action.users.followed === true),
+        users: action.users,
       };
     }
     default:

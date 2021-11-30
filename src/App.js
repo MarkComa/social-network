@@ -4,13 +4,15 @@ import NavbarСontainer from "./components/componentConteiner/navbarСontainer";
 import DashboardContainer from "./components/componentConteiner/dashboardContainer";
 import FriendsContainer from "./components/componentConteiner/friendsContainer";
 import ChatContainer from "./components/componentConteiner/chatContainer";
-import { Route } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import UsersContainer from "./components/componentConteiner/usersContainer";
 import ProfileContainer from "./components/componentConteiner/profileContainer";
 import Auth from "./components/auth";
 import { initializeApp } from "./redux/reducers/appReducer";
 import { connect } from "react-redux";
 import Preloader from "./components/preloader";
+import { Provider } from "react-redux";
+import store from "./redux/redux-store";
 //12345
 class App extends React.Component {
   componentDidMount() {
@@ -41,4 +43,15 @@ const mapStateToProps = (state) => ({
   isFetching: state.usersPage.isFetching,
 });
 
-export default connect(mapStateToProps, { initializeApp })(App);
+let AppContainer = connect(mapStateToProps, { initializeApp })(App);
+
+const SamuraiJSApp = () => {
+  return (
+    <BrowserRouter>
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    </BrowserRouter>
+  );
+};
+export default SamuraiJSApp;
