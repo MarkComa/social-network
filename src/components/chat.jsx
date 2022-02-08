@@ -14,7 +14,6 @@ const DialogItem = (props) => {
 };
 
 const Chat = (props) => {
-  debugger;
   let dialogItemEl = props.friends.map((dI) => {
     return <DialogItem fname={dI.fName} id={dI.id} />;
   });

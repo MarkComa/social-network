@@ -1,13 +1,12 @@
+import React from "react";
 import FriendsList from "../friendsList";
 import { connect } from "react-redux";
 
-const mapStateToProps = (state) => {
-  
-  return {
-    friends: state.friendsPage.friends,
-  };
-};
+class FriendsContainer extends React.Component {
+  componentDidMount() {}
+  render() {
+    return <FriendsList />;
+  }
+}
 
-const FriendsContainer = connect(mapStateToProps)(FriendsList);
-
-export default FriendsContainer;
+export default connect(null, {})(FriendsContainer);

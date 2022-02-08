@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import { logout } from "../redux/reducers/authReducer";
 
 const Login = (props) => {
-  debugger;
   return (
     <div>
       {props.isAuth ? (
