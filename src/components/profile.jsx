@@ -31,14 +31,14 @@ const Profile = (props) => {
         <div className={style.contact}>
           <h1>Contacts</h1>
           <div>
-            <p>{contacts.facebook !== null ? contacts.facebook : ""} </p>
-            <p>{contacts.github !== null ? contacts.github : ""}</p>
-            <p>{contacts.instagram !== null ? contacts.instagram : ""}</p>
-            <p>{contacts.mainLink !== null ? contacts.mainLink : ""}</p>
-            <p>{contacts.twitter !== null ? contacts.twitter : ""}</p>
-            <p>{contacts.vk !== null ? contacts.vk : ""}</p>
-            <p>{contacts.website !== null ? contacts.website : ""}</p>
-            <p>{contacts.youtube !== null ? contacts.youtube : ""}</p>
+            <p>{contacts.facebook && contacts.facebook} </p>
+            <p>{contacts.github && contacts.github}</p>
+            <p>{contacts.instagram && contacts.instagram}</p>
+            <p>{contacts.mainLink && contacts.mainLink}</p>
+            <p>{contacts.twitter && contacts.twitter}</p>
+            <p>{contacts.vk && contacts.vk}</p>
+            <p>{contacts.website && contacts.website}</p>
+            <p>{contacts.youtube && contacts.youtube}</p>
           </div>
         </div>
         <div className={style.fName}>{props.profile.fullName}</div>
