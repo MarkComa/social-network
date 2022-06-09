@@ -18,7 +18,7 @@ const Navbar = (props) => {
 
         <ul className="nav__item-top">
           <li className="nav__list-top">
-            <NavLink to={"/profile/" + props.userIdMe}>
+            <NavLink to={"/profile"}>
               <img src={user} alt="user" />
             </NavLink>
           </li>
