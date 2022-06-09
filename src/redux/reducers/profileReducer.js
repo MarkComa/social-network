@@ -1,8 +1,9 @@
 import { toggleIsFetching } from "../../redux/reducers/usersReducer";
 import { usersAPI, profileAPI } from "../../api/api";
 
-let SET_USER_PROFILE = "SET-USER-PROFILE";
-let SET_USER_STATUS = "SET-USER-STATUS";
+const SET_USER_PROFILE = "SET-USER-PROFILE";
+const SET_USER_STATUS = "SET-USER-STATUS";
+const SAVE_AVATAR_SUCCESS = "SAVE-AVATAR-SUCCESS"
 
 let initialState = {
   profile: null,
@@ -17,6 +18,9 @@ const profileReducer = (state = initialState, action) => {
     }
     case SET_USER_STATUS: {
       return { ...state, status: action.status };
+    }
+    case SAVE_AVATAR_SUCCESS: {
+      return { ...state,  profile: {...state.profile, photos: action.photos}  };
     }
 
     default:
@@ -34,6 +38,11 @@ export const setUserStatus = (status) => ({
   status,
 });
 
+export const saveAvatarSuccess = (photos) => ({
+  type: SAVE_AVATAR_SUCCESS,
+  photos,
+});
+
 export const getUserProfile = (userId) => {
   return async (dispatch) => {
     dispatch(toggleIsFetching(true));
@@ -47,6 +56,15 @@ export const getUserStatus = (userId) => {
   return async (dispatch) => {
     let response = await profileAPI.getUserStatus(userId);
     dispatch(setUserStatus(response.data));
+  };
+};
+export const saveAvatar = (file) => {
+  return async (dispatch) => {
+    let response = await profileAPI.saveAvatar(file);
+    if (response.data.resultCode === 0) {
+      dispatch(saveAvatarSuccess(response.data.data.photos));
+    }
+    
   };
 };
 

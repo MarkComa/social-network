@@ -50,6 +50,11 @@ export const profileAPI = {
   getUserStatus(userId) {
     return instanse.get(`profile/status/${userId}`);
   },
+  saveAvatar(avatarFile) {
+    const formData = new FormData();
+    formData.append("image", avatarFile)
+    return instanse.put(`profile/photo`, formData);
+  },
 
   updateUserStatus(status) {
     return instanse.put(`profile/status`, { status: status });
