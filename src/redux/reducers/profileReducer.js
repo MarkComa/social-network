@@ -4,11 +4,13 @@ import { usersAPI, profileAPI } from "../../api/api";
 const SET_USER_PROFILE = "SET-USER-PROFILE";
 const SET_USER_STATUS = "SET-USER-STATUS";
 const SAVE_AVATAR_SUCCESS = "SAVE-AVATAR-SUCCESS"
+const SET_EDIT_MODE = "SET-EDIT-MODE"
 
 let initialState = {
   profile: null,
   status: null,
   aboutMe: "",
+  editMode: false,
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -21,6 +23,9 @@ const profileReducer = (state = initialState, action) => {
     }
     case SAVE_AVATAR_SUCCESS: {
       return { ...state,  profile: {...state.profile, photos: action.photos}  };
+    }
+    case SET_EDIT_MODE: {
+      return { ...state, editMode: !state.editMode };
     }
 
     default:
@@ -42,6 +47,10 @@ export const saveAvatarSuccess = (photos) => ({
   type: SAVE_AVATAR_SUCCESS,
   photos,
 });
+export const setEditMode = () => ({
+  type: SET_EDIT_MODE
+});
+
 
 export const getUserProfile = (userId) => {
   return async (dispatch) => {
