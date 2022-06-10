@@ -29,7 +29,7 @@ const Profile = (props) => {
 					alt='avatar'
 					className={style.avatar}
 				/>
-				{props.isOwner && <input type='file' onChange={onChange} />}
+				{props.isOwner && props.isEditMode && <input type='file' onChange={onChange} />}
 				<div className={style.status}>
 					<ProfileStatus
 						status={props.status}
