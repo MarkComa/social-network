@@ -34,12 +34,15 @@ export const authAPI = {
   me() {
     return instanse.get(`auth/me`);
   },
-  login(email, password, rememberMe = false) {
-    return instanse.post(`auth/login`, { email, password, rememberMe });
+  login(email, password, rememberMe = false, captcha) {
+    return instanse.post(`auth/login`, { email, password, rememberMe, captcha });
   },
   logout() {
     return instanse.delete(`auth/login`);
   },
+  captcha() {
+    return instanse.get(`security/get-captcha-url`)
+  }
 };
 
 export const profileAPI = {
