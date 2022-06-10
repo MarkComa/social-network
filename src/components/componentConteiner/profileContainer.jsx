@@ -6,7 +6,8 @@ import {
 	getUserStatus,
 	updateUserStatus,
 	saveAvatar,
-	setEditMode
+	setEditMode,
+	updateUserProfile
 } from "../../redux/reducers/profileReducer";
 import { Redirect } from "react-router-dom";
 import Profile from "../profile";
@@ -49,7 +50,7 @@ const mapStateToProps = (state) => {
 		isFetching: state.usersPage.isFetching,
 		status: state.profilePage.status,
 		userIdMe: state.auth.userId,
-		editMode: state.profilePage.editMode
+		isEditMode: state.profilePage.isEditMode
 	};
 };
 
@@ -60,7 +61,8 @@ export default compose(
 		getUserStatus,
 		updateUserStatus,
 		saveAvatar,
-		setEditMode
+		setEditMode,
+		updateUserProfile
 	}),
 	withRouter,
 	withAuthRedirect,

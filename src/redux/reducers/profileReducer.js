@@ -10,7 +10,7 @@ let initialState = {
   profile: null,
   status: null,
   aboutMe: "",
-  editMode: false,
+  isEditMode: false,
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -25,7 +25,7 @@ const profileReducer = (state = initialState, action) => {
       return { ...state,  profile: {...state.profile, photos: action.photos}  };
     }
     case SET_EDIT_MODE: {
-      return { ...state, editMode: !state.editMode };
+      return { ...state, isEditMode: !state.isEditMode };
     }
 
     default:
@@ -50,6 +50,8 @@ export const saveAvatarSuccess = (photos) => ({
 export const setEditMode = () => ({
   type: SET_EDIT_MODE
 });
+
+
 
 
 export const getUserProfile = (userId) => {
@@ -82,6 +84,17 @@ export const updateUserStatus = (status) => {
     let response = await profileAPI.updateUserStatus(status);
     if (response.data.resultCode === 0) {
       dispatch(setUserStatus(status));
+    }
+  };
+}; 
+
+export const updateUserProfile = (data) => {
+  return async (dispatch, getState) => {
+    const userId = getState().auth.userId
+    const response = await profileAPI.updateUserProfile(data);
+    if (response.data.resultCode === 0) {
+      dispatch(getUserProfile(userId));
+      dispatch(setEditMode())
     }
   };
 };

@@ -59,4 +59,8 @@ export const profileAPI = {
   updateUserStatus(status) {
     return instanse.put(`profile/status`, { status: status });
   },
+  updateUserProfile(data) {
+    return instanse.put(`profile`, data);
+  },
+
 };

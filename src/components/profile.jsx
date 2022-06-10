@@ -36,8 +36,8 @@ const Profile = (props) => {
 						updateUserStatus={props.updateUserStatus}
 					/>
 				</div>
-        { props.isOwner && <button onClick={onSetEditMode}>Редактировать</button>}
-				{!props.editMode ? <ProfileData profile={props.profile} /> : <ProfileDataForm profile={props.profile}/>}
+        { props.isOwner && <button onClick={onSetEditMode}>{!props.isEditMode ? "Редактировать" : "Закрыть"}</button>}
+				{!props.isEditMode ? <ProfileData profile={props.profile} /> : <ProfileDataForm profile={props.profile} updateUserProfile={props.updateUserProfile}/>}
 			</div>
 		</div>
 	);
