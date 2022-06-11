@@ -35,7 +35,7 @@ const AuthForm = (props) => {
 			remember me
 			{props.captchaUrl && (
 				<>
-					<img src={props.captchaUrl} />
+					<img src={props.captchaUrl} alt='captcha'/>
 					<Field
 						className={style.loginInput}
 						placeholder={"Введите каптчу"}

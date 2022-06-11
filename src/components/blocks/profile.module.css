@@ -7,66 +7,34 @@
   overflow-y: auto;
 }
 .profile__user {
+  position: relative;
   max-width: 1200px;
   margin: 25px auto;
   display: grid;
-  align-content: center;
-
-
   grid-template-columns: 300px auto;
-  grid-auto-rows: 40px;
-  grid-column-gap: 20px;
-  row-gap: 10px;
+  gap: 28px;
+  grid-template-areas: "avatar profileData"
+    "avatar profileData"
+    "avatar profileData"
+    "status profileData";
+  
 }
 .avatar {
-  margin: auto;
-
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 8;
+  grid-area: avatar;
 }
 .status {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 3;
+  grid-area: status;
+  margin-left: 50px;
 }
-.contact {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 8;
+.status * {
+  font-size: 18px;
 }
-.fName {
-  text-align: center;
-
-  color: #202020;
-  font-size: 24px;
-
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 8;
-  grid-row-end: 9;
+.profileData{
+  grid-area: profileData;
 }
-.job {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 9;
-  grid-row-end: 11;
-}
-.jobDescription {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 11;
-  grid-row-end: 14;
-}
-.aboutMe {
-  color: #202020;
-  font-size: 19px;
-
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 8;
-  grid-row-end: 14;
+.btn {
+  position: absolute;
+  top: 20px;
+  right: 36px;
+  font-size: 16px;
 }

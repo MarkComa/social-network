@@ -28,9 +28,11 @@ const Pagination = (props) => {
             >
               {p}
             </button>
-          );
-        } else return <></>;
+          )
+        }
       })}
+
+    
     </div>
   );
 };
