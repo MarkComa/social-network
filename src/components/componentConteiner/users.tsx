@@ -1,12 +1,11 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import {
+	IUser,
 	requestUsers,
 	setCurrentPage,
 } from "../../redux/reducers/usersReducer";
 import {
-	getUsers,
-	getPageSize,
 	getTotalUsersCount,
 	getCurrentPage,
 	getIsFetching,
@@ -18,18 +17,18 @@ import Preloader from "../preloader";
 import { useEffect } from "react";
 
 export const Users = () => {
-	const isFetching = useSelector((state) => getIsFetching(state));
-	const users = useSelector((state) => getUsers(state));
-	const pageSize = useSelector((state) => getPageSize(state));
-	const totalUsersCount = useSelector((state) => getTotalUsersCount(state));
-	const currentPage = useSelector((state) => getCurrentPage(state));
-	const dispatch = useDispatch();
+	const isFetching = useAppSelector((state) => getIsFetching(state));
+	const users = useAppSelector((state) => state.usersPage.users);
+	const pageSize = useAppSelector(state => state.usersPage.pageSize);
+	const totalUsersCount = useAppSelector((state) => getTotalUsersCount(state));
+	const currentPage = useAppSelector((state) => getCurrentPage(state));
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		dispatch(requestUsers(pageSize, currentPage));
 	}, []);
 
-	const onPageChanged = (pageNumber) => {
+	const onPageChanged = (pageNumber: number) => {
 		dispatch(setCurrentPage(pageNumber));
 		dispatch(requestUsers(pageSize, pageNumber));
 	};
@@ -45,14 +44,10 @@ export const Users = () => {
 					pageSize={pageSize}
 				/>
 				<div className={style.users}>
-					{users.map((u) => (
-						<div key={u.id}>
+					{users.map((user:IUser) => (
+						<div key={user.id}>
 							<UserCard
-								id={u.id}
-								name={u.name}
-								photos={u.photos.small}
-								status={u.status}
-								followed={u.followed}
+								user={user}
 							/>
 						</div>
 					))}
