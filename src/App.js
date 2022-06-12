@@ -3,7 +3,7 @@ import React from "react";
 import NavbarСontainer from "./components/componentConteiner/navbarСontainer";
 import DashboardContainer from "./components/componentConteiner/dashboardContainer";
 import { BrowserRouter, Route } from "react-router-dom";
-import UsersContainer from "./components/componentConteiner/usersContainer";
+import { Users } from "./components/componentConteiner/users.tsx";
 import Auth from "./components/auth";
 import { initializeApp } from "./redux/reducers/appReducer";
 import { connect } from "react-redux";
@@ -47,7 +47,7 @@ class App extends React.Component {
 					path='/dashboard'
 					render={() => <DashboardContainer />}
 				/>
-				<Route path='/users' render={() => <UsersContainer />} />
+				<Route path='/users' render={() => <Users />} />
 				<Route
 					path='/profile/:userId?'
 					render={withSuspense(ProfileContainer)}

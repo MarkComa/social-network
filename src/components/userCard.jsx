@@ -1,8 +1,20 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import style from "./blocks/userCard.module.css";
+import {
+	follow,
+	unfollow,
+} from "../redux/reducers/usersReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { getFollowingInProgress, getIsAuth } from "../redux/selectors/user-selectors";
 
 const UserCard = (props) => {
+  const followingInProgress = useSelector((state) =>
+		getFollowingInProgress(state),
+	);
+	const isAuth = useSelector((state) => getIsAuth(state));
+  const dispatch = useDispatch()
+  
   return (
     <div className={style.user}>
       <div>
@@ -22,14 +34,14 @@ const UserCard = (props) => {
           <div>{props.status}</div>
         </div>
       </div>
-      {props.isAuth ? (
+      {isAuth ? (
         <div>
           {props.followed ? (
             <button
               className={style.btn}
-              disabled={props.followingInProgress.some((id) => id === props.id)}
+              disabled={followingInProgress.some((id) => id === props.id)}
               onClick={() => {
-                props.unfollow(props.id);
+                dispatch(unfollow(props.id))
               }}
             >
               Unfollow
@@ -37,9 +49,9 @@ const UserCard = (props) => {
           ) : (
             <button
               className={style.btn}
-              disabled={props.followingInProgress.some((id) => id === props.id)}
+              disabled={followingInProgress.some((id) => id === props.id)}
               onClick={() => {
-                props.follow(props.id);
+                dispatch(follow(props.id))
               }}
             >
               Follow
