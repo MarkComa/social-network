@@ -1,6 +1,8 @@
 import React from "react";
 import style from "./blocks/profileData.module.css";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import {updateUserProfile} from '../redux/reducers/profileReducer'
 
 export const ProfileData = ({ profile }) => {
 	const contacts = profile.contacts;
@@ -30,7 +32,8 @@ export const ProfileData = ({ profile }) => {
 	);
 };
 
-export const ProfileDataForm = ({ profile, updateUserProfile }) => {
+export const ProfileDataForm = ({ profile }) => {
+	const dispatch = useDispatch()
 	const contacts = profile.contacts;
 	const defaultValues = { ...profile, contacts: { ...contacts } };
 	const {
@@ -39,7 +42,7 @@ export const ProfileDataForm = ({ profile, updateUserProfile }) => {
 		formState: { errors },
 	} = useForm({ defaultValues });
 	const onSubmit = (data) => {
-		updateUserProfile(data);
+		dispatch(updateUserProfile(data));
 	};
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>

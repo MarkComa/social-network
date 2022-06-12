@@ -18,8 +18,8 @@ const ChatContainer = React.lazy(() =>
 const FriendsContainer = React.lazy(() =>
 	import("./components/componentConteiner/friendsContainer"),
 );
-const ProfileContainer = React.lazy(() =>
-	import("./components/componentConteiner/profileContainer"),
+const Profile = React.lazy(() =>
+	import("./components/profile"),
 );
 
 class App extends React.Component {
@@ -50,7 +50,7 @@ class App extends React.Component {
 				<Route path='/users' render={() => <Users />} />
 				<Route
 					path='/profile/:userId?'
-					render={withSuspense(ProfileContainer)}
+					render={withSuspense(Profile)}
 				/>
 				<Route path='/login' render={() => <Auth />} />
 			</div>

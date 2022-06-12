@@ -1,25 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEventHandler, FocusEventHandler, MouseEventHandler } from "react";
+import { useAppDispatch } from "../redux/hooks/hooks";
+import { updateUserStatus } from "../redux/reducers/profileReducer";
 
+interface Props {
+  status: string;
+}
 
-const ProfileStatus = (props) => {
+const ProfileStatus = (props:Props) => {
 
-  let [editMode, setEditMode] = useState(false);
-  let [status, setStatus] = useState(props.status);
+  const [editMode, setEditMode] = useState(false);
+  const [status, setStatus] = useState(props.status);
+  const dispatch = useAppDispatch()
   
   useEffect(()=>{
     setStatus(props.status)}, [props.status]
   )
-  const onStatusChange = (e) => {
+  const onStatusChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setStatus(e.currentTarget.value) ;
   };
 
-  const activateEditMode = () => {
+  const activateEditMode: MouseEventHandler<HTMLSpanElement> = () => {
     setEditMode(true);
   };
 
-  const deactivateEditMode = () => {
+  const deactivateEditMode:FocusEventHandler<HTMLInputElement> = () => {
     setEditMode(false) ;
-    props.updateUserStatus(status);
+    dispatch(updateUserStatus(status))
   };
 
     return (
