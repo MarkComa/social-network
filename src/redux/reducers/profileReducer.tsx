@@ -1,19 +1,28 @@
-import { toggleIsFetching } from "../../redux/reducers/usersReducer";
+import { toggleIsFetching } from "./usersReducer";
 import { usersAPI, profileAPI } from "../../api/api";
+import { PhotosType, ProfileType } from "../../types/types";
+import { AppDispatch, RootState } from "../redux-store";
 
 const SET_USER_PROFILE = "SET-USER-PROFILE";
 const SET_USER_STATUS = "SET-USER-STATUS";
 const SAVE_AVATAR_SUCCESS = "SAVE-AVATAR-SUCCESS"
 const SET_EDIT_MODE = "SET-EDIT-MODE"
 
-let initialState = {
+interface ProfileState {
+  profile: ProfileType | null,
+  status: string | null,
+  aboutMe: string,
+  isEditMode: boolean,
+}
+
+const initialState: ProfileState = {
   profile: null,
   status: null,
   aboutMe: "",
   isEditMode: false,
 };
 
-const profileReducer = (state = initialState, action) => {
+const profileReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case SET_USER_PROFILE: {
       return { ...state, profile: action.userProfile };
@@ -33,17 +42,17 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 
-export const setUserProfile = (userProfile) => ({
+export const setUserProfile = (userProfile: ProfileType) => ({
   type: SET_USER_PROFILE,
   userProfile,
 });
 
-export const setUserStatus = (status) => ({
+export const setUserStatus = (status : string) => ({
   type: SET_USER_STATUS,
   status,
 });
 
-export const saveAvatarSuccess = (photos) => ({
+export const saveAvatarSuccess = (photos: PhotosType) => ({
   type: SAVE_AVATAR_SUCCESS,
   photos,
 });
@@ -54,8 +63,8 @@ export const setEditMode = () => ({
 
 
 
-export const getUserProfile = (userId) => {
-  return async (dispatch) => {
+export const getUserProfile = (userId: string) => {
+  return async (dispatch: AppDispatch) => {
     dispatch(toggleIsFetching(true));
     let response = await usersAPI.getUsersProfile(userId);
     dispatch(toggleIsFetching(false));
@@ -63,14 +72,14 @@ export const getUserProfile = (userId) => {
   };
 };
 
-export const getUserStatus = (userId) => {
-  return async (dispatch) => {
+export const getUserStatus = (userId: string) => {
+  return async (dispatch: AppDispatch) => {
     let response = await profileAPI.getUserStatus(userId);
     dispatch(setUserStatus(response.data));
   };
 };
-export const saveAvatar = (file) => {
-  return async (dispatch) => {
+export const saveAvatar = (file: File) => {
+  return async (dispatch:AppDispatch) => {
     let response = await profileAPI.saveAvatar(file);
     if (response.data.resultCode === 0) {
       dispatch(saveAvatarSuccess(response.data.data.photos));
@@ -79,8 +88,8 @@ export const saveAvatar = (file) => {
   };
 };
 
-export const updateUserStatus = (status) => {
-  return async (dispatch) => {
+export const updateUserStatus = (status: string) => {
+  return async (dispatch:AppDispatch) => {
     let response = await profileAPI.updateUserStatus(status);
     if (response.data.resultCode === 0) {
       dispatch(setUserStatus(status));
@@ -88,8 +97,8 @@ export const updateUserStatus = (status) => {
   };
 }; 
 
-export const updateUserProfile = (data) => {
-  return async (dispatch, getState) => {
+export const updateUserProfile = (data: FormData) => {
+  return async (dispatch: AppDispatch, getState: () => RootState) => {
     const userId = getState().auth.userId
     const response = await profileAPI.updateUserProfile(data);
     if (response.data.resultCode === 0) {
