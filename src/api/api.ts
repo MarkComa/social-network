@@ -1,3 +1,4 @@
+import { ProfileType } from './../types/types';
 import axios from "axios";
 
 const instanse = axios.create({
@@ -17,15 +18,15 @@ export const usersAPI = {
       });
   },
 
-  getUsersProfile(userId) {
+  getUsersProfile(userId:string | null) {
     return profileAPI.getUsersProfile(userId);
   },
 
-  follow(userId) {
+  follow(userId:string | null) {
     return instanse.post(`follow/${userId}`);
   },
 
-  unfollow(userId) {
+  unfollow(userId:string | null) {
     return instanse.delete(`follow/${userId}`);
   },
 };
@@ -34,7 +35,7 @@ export const authAPI = {
   me() {
     return instanse.get(`auth/me`);
   },
-  login(email, password, rememberMe = false, captcha) {
+  login(email:string, password:string, rememberMe: boolean = false, captcha: string | null) {
     return instanse.post(`auth/login`, { email, password, rememberMe, captcha });
   },
   logout() {
@@ -46,23 +47,23 @@ export const authAPI = {
 };
 
 export const profileAPI = {
-  getUsersProfile(userId) {
+  getUsersProfile(userId:string | null) {
     return instanse.get(`profile/${userId}`);
   },
 
-  getUserStatus(userId) {
+  getUserStatus(userId:string | null) {
     return instanse.get(`profile/status/${userId}`);
   },
-  saveAvatar(avatarFile) {
+  saveAvatar(avatarFile: File) {
     const formData = new FormData();
     formData.append("image", avatarFile)
     return instanse.put(`profile/photo`, formData);
   },
 
-  updateUserStatus(status) {
+  updateUserStatus(status: string) {
     return instanse.put(`profile/status`, { status: status });
   },
-  updateUserProfile(data) {
+  updateUserProfile(data: ProfileType) {
     return instanse.put(`profile`, data);
   },
 

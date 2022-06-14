@@ -22,7 +22,7 @@ export type PhotosType = {
 }
 export type IUser = {
   name:     string;
-  id:       number;
+  id:       string;
   photos:   Photos;
   status:   string | null;
   followed: boolean;
