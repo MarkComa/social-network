@@ -64,24 +64,24 @@ export const setEditMode = () => ({
 
 
 
-export const getUserProfile = (userId: string) => {
+export const getUserProfile = (userId: string | null) => {
   return async (dispatch: AppDispatch) => {
     dispatch(toggleIsFetching(true));
-    let response = await usersAPI.getUsersProfile(userId);
+    const response = await usersAPI.getUsersProfile(userId);
     dispatch(toggleIsFetching(false));
     dispatch(setUserProfile(response.data));
   };
 };
 
-export const getUserStatus = (userId: string) => {
+export const getUserStatus = (userId: string | null) => {
   return async (dispatch: AppDispatch) => {
-    let response = await profileAPI.getUserStatus(userId);
+    const response = await profileAPI.getUserStatus(userId);
     dispatch(setUserStatus(response.data));
   };
 };
 export const saveAvatar = (file: File) => {
   return async (dispatch:AppDispatch) => {
-    let response = await profileAPI.saveAvatar(file);
+    const response = await profileAPI.saveAvatar(file);
     if (response.data.resultCode === 0) {
       dispatch(saveAvatarSuccess(response.data.data.photos));
     }
@@ -91,7 +91,7 @@ export const saveAvatar = (file: File) => {
 
 export const updateUserStatus = (status: string) => {
   return async (dispatch:AppDispatch) => {
-    let response = await profileAPI.updateUserStatus(status);
+    const response = await profileAPI.updateUserStatus(status);
     if (response.data.resultCode === 0) {
       dispatch(setUserStatus(status));
     }

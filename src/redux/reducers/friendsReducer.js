@@ -1,8 +1,8 @@
 import { usersAPI } from "../../api/api";
 
-let SET_USERS = "friendsReducer/SET-USERS";
+const SET_USERS = "friendsReducer/SET-USERS";
 
-let initialState = {
+const initialState = {
   users: [],
   pageSize: 15,
   totalUsersCount: 0,
@@ -26,7 +26,7 @@ export const setUsers = (users) => ({ type: SET_USERS, users });
 
 export const requestFollowingUsers = (pageSize, currentPage) => {
   return async (dispatch) => {
-    let data = await usersAPI.getUsers(pageSize, currentPage);
+    const data = await usersAPI.getUsers(pageSize, currentPage);
     dispatch(setUsers(data.items));
   };
 };

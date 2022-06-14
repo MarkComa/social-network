@@ -34,13 +34,13 @@ const MessangerForm = (props) => {
 const MessangerReduxForm = reduxForm({ form: "MessangerForm" })(MessangerForm);
 
 const Messanger = (props) => {
-  let id = props.friendId;
+  const id = props.friendId;
 
   const onSubmitMessanger = (value) => {
     props.sendMessageClick(id, value.newMessageText);
   };
 
-  let messageItemEl = props.friend.map((mI) => {
+  const messageItemEl = props.friend.map((mI) => {
     return <MessageList messages={mI.messages} />;
   });
 

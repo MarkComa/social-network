@@ -1,5 +1,5 @@
 export interface ProfileType {
-	userId: number | null;
+	userId: string | null;
 	lookingForAJob: boolean;
 	lookingForAJobDescription: string;
 	fullName: string;
@@ -19,4 +19,15 @@ export type ContactsType = {
 export type PhotosType = {
 	large: string;
 	small: string;
+}
+export type IUser = {
+  name:     string;
+  id:       number;
+  photos:   Photos;
+  status:   string | null;
+  followed: boolean;
+}
+export interface Photos {
+  small: string | null;
+  large: string | null;
 }

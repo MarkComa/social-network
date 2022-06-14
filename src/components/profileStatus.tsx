@@ -3,7 +3,8 @@ import { useAppDispatch } from "../redux/hooks/hooks";
 import { updateUserStatus } from "../redux/reducers/profileReducer";
 
 interface Props {
-  status: string;
+  status: string
+  isOwner: boolean
 }
 
 const ProfileStatus = (props:Props) => {
@@ -20,12 +21,16 @@ const ProfileStatus = (props:Props) => {
   };
 
   const activateEditMode: MouseEventHandler<HTMLSpanElement> = () => {
+    if (props.isOwner) {
     setEditMode(true);
+    }
   };
 
   const deactivateEditMode:FocusEventHandler<HTMLInputElement> = () => {
+    if (props.isOwner) {
     setEditMode(false) ;
     dispatch(updateUserStatus(status))
+    }
   };
 
     return (

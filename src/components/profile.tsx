@@ -4,7 +4,6 @@ import {
 	getUserStatus,
 	saveAvatar,
 	setEditMode,
-	updateUserStatus,
 } from "../redux/reducers/profileReducer";
 import { useParams } from "react-router-dom";
 import style from "./blocks/profile.module.css";
@@ -21,12 +20,13 @@ const Profile = () => {
 	const userIdMe = useAppSelector((state) => state.auth.userId);
 	const isEditMode = useAppSelector((state) => state.profilePage.isEditMode);
 	const dispatch = useAppDispatch();
-	let { userId } = useParams<{ userId: string }>();
+	let { userId } = useParams<{userId: string}>();
 	const isOwner = !userId;
 
 	const refreshProfile = () => {
 		if (!userId) {
-			userId = userIdMe;
+			dispatch(getUserStatus(userIdMe));
+			dispatch(getUserProfile(userIdMe));
 		}
 		dispatch(getUserStatus(userId));
 		dispatch(getUserProfile(userId));
@@ -70,9 +70,7 @@ const Profile = () => {
 					)}
 				</div>
 				<div className={style.status}>
-					<ProfileStatus
-						status={status}
-					/>
+					<ProfileStatus status={status} isOwner={isOwner}/>
 				</div>
 				{isOwner && (
 					<button onClick={onSetEditMode} className={style.btn}>

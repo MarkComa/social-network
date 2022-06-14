@@ -7,7 +7,7 @@ const SET_AUTH_USER_DATA = "SET-AUTH-USER-DATA";
 const SET_CAPTCHA = "SET-CAPTCHA";
 
 const initialState = {
-	userId: null as number | null,
+	userId: null as string | null,
 	login: null as string | null,
 	email: null as string | null,
 	isAuth: false,
@@ -15,7 +15,7 @@ const initialState = {
 };
 type StateType = typeof initialState;
 
-const authReducer = (state = initialState, action: AnyAction) => {
+const authReducer = (state = initialState, action: AnyAction):StateType => {
 	switch (action.type) {
 		case SET_AUTH_USER_DATA:
 			return {
@@ -52,7 +52,7 @@ export const getAuth = () => {
 
 export const login = (email: string, password: string, rememberMe: boolean, captcha:string|null = null) => {
 	return async (dispatch: AppDispatch) => {
-		let response = await authAPI.login(
+		const response = await authAPI.login(
 			email,
 			password,
 			rememberMe,
@@ -64,7 +64,7 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 			if (response.data.resultCode === 10) {
 				dispatch(getCaptcha());
 			}
-			let message =
+			const message =
 				response.data.messages.length > 0
 					? response.data.messages[0]
 					: "Some error";
@@ -75,7 +75,7 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 
 export const logout = () => {
 	return async (dispatch: AppDispatch) => {
-		let response = await authAPI.logout();
+		const response = await authAPI.logout();
 		if (response.data.resultCode === 0) {
 			dispatch(setAuthUserData(null, null, null, false));
 		}
@@ -83,7 +83,7 @@ export const logout = () => {
 };
 export const getCaptcha = () => {
 	return async (dispatch: AppDispatch) => {
-		let response = await authAPI.captcha();
+		const response = await authAPI.captcha();
 		dispatch(setCaptcha(response.data.url));
 	};
 };

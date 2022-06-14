@@ -63,7 +63,7 @@ const mapStateToProps = (state) => ({
 	isFetching: state.usersPage.isFetching,
 });
 
-let AppContainer = connect(mapStateToProps, { initializeApp })(App);
+const AppContainer = connect(mapStateToProps, { initializeApp })(App);
 
 const SamuraiJSApp = () => {
 	return (

@@ -1,7 +1,6 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import {
-	IUser,
 	requestUsers,
 	setCurrentPage,
 } from "../../redux/reducers/usersReducer";
@@ -15,6 +14,7 @@ import Pagination from "../common/pagginator";
 import UserCard from "../userCard";
 import Preloader from "../preloader";
 import { useEffect } from "react";
+import { IUser } from "../../types/types";
 
 export const Users = () => {
 	const isFetching = useAppSelector((state) => getIsFetching(state));

@@ -1,8 +1,9 @@
 import React from "react";
 import style from "./blocks/userCard.module.css";
-import { follow, IUser, unfollow } from "../redux/reducers/usersReducer";
+import { follow, unfollow } from "../redux/reducers/usersReducer";
 import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
 import { Link } from "react-router-dom";
+import { IUser } from "../types/types";
 
 interface UserCardProps {
 	user: IUser;

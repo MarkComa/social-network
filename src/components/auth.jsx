@@ -58,7 +58,7 @@ const AuthReduxForm = reduxForm({ form: "login" })(AuthForm);
 
 const Auth = (props) => {
   
-	let onSubmitAuth = (values) => {
+	const onSubmitAuth = (values) => {
 		props.login(
 			values.email,
 			values.password,
