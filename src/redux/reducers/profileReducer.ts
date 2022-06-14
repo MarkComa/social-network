@@ -99,7 +99,7 @@ export const updateUserStatus = (status: string) => {
 }; 
 
 export const updateUserProfile = (data: ProfileType) => {
-  return async (dispatch: any, getState: () => RootState) => {
+  return async (dispatch: AppDispatch, getState: () => RootState) => {
     const userId = getState().auth.userId
     const response = await profileAPI.updateUserProfile(data);
     if (response.data.resultCode === 0) {
