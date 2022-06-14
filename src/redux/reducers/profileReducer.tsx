@@ -2,6 +2,7 @@ import { toggleIsFetching } from "./usersReducer";
 import { usersAPI, profileAPI } from "../../api/api";
 import { PhotosType, ProfileType } from "../../types/types";
 import { AppDispatch, RootState } from "../redux-store";
+import { AnyAction } from "@reduxjs/toolkit";
 
 const SET_USER_PROFILE = "SET-USER-PROFILE";
 const SET_USER_STATUS = "SET-USER-STATUS";
@@ -22,7 +23,7 @@ const initialState: ProfileState = {
   isEditMode: false,
 };
 
-const profileReducer = (state = initialState, action: any) => {
+const profileReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case SET_USER_PROFILE: {
       return { ...state, profile: action.userProfile };
@@ -97,8 +98,8 @@ export const updateUserStatus = (status: string) => {
   };
 }; 
 
-export const updateUserProfile = (data: FormData) => {
-  return async (dispatch: AppDispatch, getState: () => RootState) => {
+export const updateUserProfile = (data: ProfileType) => {
+  return async (dispatch: any, getState: () => RootState) => {
     const userId = getState().auth.userId
     const response = await profileAPI.updateUserProfile(data);
     if (response.data.resultCode === 0) {

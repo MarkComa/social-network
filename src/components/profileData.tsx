@@ -1,21 +1,13 @@
 import React from "react";
 import style from "./blocks/profileData.module.css";
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { updateUserProfile } from "../redux/reducers/profileReducer";
 import { ContactsType, ProfileType } from "../types/types";
+import { useAppDispatch } from "../redux/hooks/hooks";
 
 interface Props {
 	profile: ProfileType;
 }
-
-type FormData = {
-	fullName: string;
-	contacts: ContactsType;
-	lookingForAJob: string;
-	lookingForAJobDescription: string;
-	aboutMe: string;
-};
 
 export const ProfileData = ({ profile }: Props) => {
 	const contacts = profile.contacts;
@@ -46,43 +38,55 @@ export const ProfileData = ({ profile }: Props) => {
 };
 
 export const ProfileDataForm = ({ profile }: Props) => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const contacts = profile.contacts;
-	const defaultValues = { ...profile};
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<FormData>({ defaultValues });
+	} = useForm<ProfileType>({ defaultValues: { ...profile } });
 
-	const onSubmit = (data: FormData) => {
+	const onSubmit: SubmitHandler<ProfileType> = data => {
 		dispatch(updateUserProfile(data));
 	};
+
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className={style.fName}>
 				Никнейм:
-				<input {...register("fullName")} type='text' />
+				<input
+					{...register("fullName")}
+					type='text'
+				/>
 			</div>
 			<div className={style.contact}>
 				<h1>Contacts</h1>
 				<ul>
-					{Object.keys(contacts).map((key) => (
-						<li key={key}>
-							<span>{key} :</span>
-							<input {...register(`contacts.${key}`)} />
-						</li>
-					))}
+					{Object.keys(contacts).map((key) => {
+						return (
+							<li key={key}>
+								<span>{key} :</span>
+								<input
+									{...register(`contacts.${key as keyof ContactsType}`)}
+								/>
+							</li>
+						);
+					})}
 				</ul>
 			</div>
 
 			<div className={style.job}>
 				Поиск работы:
-				<input {...register("lookingForAJob")} type='checkbox' />
+				<input
+					{...register("lookingForAJob")}
+					type='checkbox'
+				/>
 			</div>
 			<div className={style.jobDescription}>
 				Описание работы:
-				<textarea {...register("lookingForAJobDescription")} />
+				<textarea
+					{...register("lookingForAJobDescription")}
+				/>
 			</div>
 			<div className={style.aboutMe}>
 				Обо мне:
@@ -93,13 +97,10 @@ export const ProfileDataForm = ({ profile }: Props) => {
 	);
 };
 
-type Contact = {
+type ContactType = {
 	contactTitle: string;
 	contactValue: string;
 };
-const Contact: React.FC<Contact> = ({
-	contactTitle,
-	contactValue,
-}): JSX.Element => {
+const Contact = ({ contactTitle, contactValue }: ContactType): JSX.Element => {
 	return <li>{contactValue ? contactTitle + ": " + contactValue : ""}</li>;
 };

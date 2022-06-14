@@ -1,9 +1,9 @@
 export interface ProfileType {
-	userId: number;
+	userId: number | null;
 	lookingForAJob: boolean;
 	lookingForAJobDescription: string;
 	fullName: string;
-	contacts: ContactsType[];
+	contacts: ContactsType;
 	aboutMe: string;
 };
 export type ContactsType = {
