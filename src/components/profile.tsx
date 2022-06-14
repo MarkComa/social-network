@@ -36,6 +36,7 @@ const Profile = () => {
 	}, []);
 	useEffect(() => {
 		refreshProfile();
+		userId && dispatch(setEditMode(false))
 	}, [userId]);
 
 	if (!profile) {
@@ -51,7 +52,7 @@ const Profile = () => {
 	};
 
 	const onSetEditMode = () => {
-		dispatch(setEditMode());
+		dispatch(setEditMode(!isEditMode));
 	};
 	return (
 		<div className={style.profile}>

@@ -17,7 +17,7 @@ export const ProfileData = ({ profile }: Props) => {
 			<div className={style.contact}>
 				<h1>Contacts</h1>
 				<ul>
-					{Object.keys(contacts).map((key) => (
+					{contacts && Object.keys(contacts).map((key) => (
 						<Contact
 							key={key}
 							contactTitle={key}
@@ -62,7 +62,7 @@ export const ProfileDataForm = ({ profile }: Props) => {
 			<div className={style.contact}>
 				<h1>Contacts</h1>
 				<ul>
-					{Object.keys(contacts).map((key) => {
+					{contacts && Object.keys(contacts).map((key) => {
 						return (
 							<li key={key}>
 								<span>{key} :</span>

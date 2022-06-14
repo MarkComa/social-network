@@ -1,10 +1,11 @@
 export interface ProfileType {
-	userId: string | null;
-	lookingForAJob: boolean;
-	lookingForAJobDescription: string;
-	fullName: string;
-	contacts: ContactsType;
-	aboutMe: string;
+	userId?: string | null;
+	lookingForAJob?: boolean;
+	lookingForAJobDescription?: string;
+	fullName?: string;
+	contacts?: ContactsType;
+	aboutMe?: string;
+	photos: PhotosType;
 };
 export type ContactsType = {
 	github: string;

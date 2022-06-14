@@ -1,20 +1,20 @@
 import React from "react";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
 import {
 	requestUsers,
 	setCurrentPage,
-} from "../../redux/reducers/usersReducer";
+} from "../redux/reducers/usersReducer";
 import {
 	getTotalUsersCount,
 	getCurrentPage,
 	getIsFetching,
-} from "../../redux/selectors/user-selectors";
-import style from "../blocks/users.module.css";
-import Pagination from "../common/pagginator";
-import UserCard from "../userCard";
-import Preloader from "../preloader";
+} from "../redux/selectors/user-selectors";
+import style from "./blocks/users.module.css";
+import Pagination from "./common/pagginator";
+import UserCard from "./userCard";
+import Preloader from "./preloader";
 import { useEffect } from "react";
-import { IUser } from "../../types/types";
+import { IUser } from "../types/types";
 
 export const Users = () => {
 	const isFetching = useAppSelector((state) => getIsFetching(state));

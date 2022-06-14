@@ -60,7 +60,7 @@ export const profileAPI = {
     return instanse.put(`profile/photo`, formData);
   },
 
-  updateUserStatus(status: string) {
+  updateUserStatus(status: string | null) {
     return instanse.put(`profile/status`, { status: status });
   },
   updateUserProfile(data: ProfileType) {

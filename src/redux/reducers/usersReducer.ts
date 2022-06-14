@@ -23,7 +23,7 @@ const initialState = {
 };
 type StateType = typeof initialState
 
-const usersReducer = (state = initialState, action:AnyAction):StateType => {
+const usersReducer = (state = initialState, action:AnyAction): StateType => {
   switch (action.type) {
     case FOLLOW:
       return {

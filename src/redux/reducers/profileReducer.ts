@@ -23,7 +23,7 @@ const initialState: ProfileState = {
   isEditMode: false,
 };
 
-const profileReducer = (state = initialState, action: AnyAction) => {
+const profileReducer = (state = initialState, action: AnyAction): ProfileState => {
   switch (action.type) {
     case SET_USER_PROFILE: {
       return { ...state, profile: action.userProfile };
@@ -35,7 +35,7 @@ const profileReducer = (state = initialState, action: AnyAction) => {
       return { ...state,  profile: {...state.profile, photos: action.photos}  };
     }
     case SET_EDIT_MODE: {
-      return { ...state, isEditMode: !state.isEditMode };
+      return { ...state, isEditMode: action.isEdit };
     }
 
     default:
@@ -48,7 +48,7 @@ export const setUserProfile = (userProfile: ProfileType) => ({
   userProfile,
 });
 
-export const setUserStatus = (status : string) => ({
+export const setUserStatus = (status : string | null) => ({
   type: SET_USER_STATUS,
   status,
 });
@@ -57,8 +57,9 @@ export const saveAvatarSuccess = (photos: PhotosType) => ({
   type: SAVE_AVATAR_SUCCESS,
   photos,
 });
-export const setEditMode = () => ({
-  type: SET_EDIT_MODE
+export const setEditMode = (isEdit: boolean) => ({
+  type: SET_EDIT_MODE,
+  isEdit
 });
 
 
@@ -89,7 +90,7 @@ export const saveAvatar = (file: File) => {
   };
 };
 
-export const updateUserStatus = (status: string) => {
+export const updateUserStatus = (status: string | null) => {
   return async (dispatch:AppDispatch) => {
     const response = await profileAPI.updateUserStatus(status);
     if (response.data.resultCode === 0) {
@@ -104,7 +105,7 @@ export const updateUserProfile = (data: ProfileType) => {
     const response = await profileAPI.updateUserProfile(data);
     if (response.data.resultCode === 0) {
       dispatch(getUserProfile(userId));
-      dispatch(setEditMode())
+      dispatch(setEditMode(false))
     }
   };
 };

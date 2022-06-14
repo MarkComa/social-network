@@ -3,14 +3,14 @@ import { useAppDispatch } from "../redux/hooks/hooks";
 import { updateUserStatus } from "../redux/reducers/profileReducer";
 
 interface Props {
-  status: string
+  status: string | null;
   isOwner: boolean
 }
 
 const ProfileStatus = (props:Props) => {
 
   const [editMode, setEditMode] = useState(false);
-  const [status, setStatus] = useState(props.status);
+  const [status, setStatus] = useState<string | null>(props.status);
   const dispatch = useAppDispatch()
   
   useEffect(()=>{
@@ -49,7 +49,7 @@ const ProfileStatus = (props:Props) => {
             <input
               onChange={onStatusChange}
               autoFocus={true}
-              value={status}
+              value={status as string}
               onBlur={deactivateEditMode}
             />
           </div>
