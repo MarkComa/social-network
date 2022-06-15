@@ -1,8 +1,8 @@
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 import DownloadIcon from "../assets/images/iconsDownload.png";
 import s from './blocks/downloadFileBtn.module.css'
 
-export const DownloadFileBtn = ({onChange}) => {
+export const DownloadFileBtn = ({onChange}:Props) => {
 	return (
 		<div className={s.input}>
 			<input className={s.input__file} name="input" id="input" type='file' onChange={onChange} />
@@ -13,3 +13,7 @@ export const DownloadFileBtn = ({onChange}) => {
 		</div>
 	);
 };
+
+interface Props {
+	onChange:  ChangeEventHandler<HTMLInputElement>
+}

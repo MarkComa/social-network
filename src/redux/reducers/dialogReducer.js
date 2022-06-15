@@ -1,6 +1,6 @@
-let ADD_MESSAGE = "ADD-MESSAGE";
+const ADD_MESSAGE = "ADD-MESSAGE";
 
-let initialState = {
+const initialState = {
   friends: [
     {
       id: "1",
@@ -20,7 +20,7 @@ const dialogReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_MESSAGE:
       if (state.newMessageText !== "") {
-        let newMessage = { message: action.newMessageText };
+        const newMessage = { message: action.newMessageText };
         return {
           ...state,
 

@@ -8,7 +8,7 @@ import Chat from "../chat";
 
 class ChatContainer extends React.Component {
   render() {
-    let friendId = this.props.match.params.friendId;
+    const friendId = this.props.match.params.friendId;
     if (!friendId) {
       friendId = "";
     }

@@ -14,11 +14,11 @@ const DialogItem = (props) => {
 };
 
 const Chat = (props) => {
-  let dialogItemEl = props.friends.map((dI) => {
+  const dialogItemEl = props.friends.map((dI) => {
     return <DialogItem fname={dI.fName} id={dI.id} />;
   });
 
-  let friend = props.friends.filter((i) => {
+  const friend = props.friends.filter((i) => {
     return i.id === props.friendId;
   });
   return (

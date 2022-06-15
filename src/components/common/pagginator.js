@@ -2,13 +2,13 @@ import React from "react";
 import style from "../blocks/pagination.module.css";
 
 const Pagination = (props) => {
-  let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
-  let pages = [];
+  const pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
+  const pages = [];
   for (let i = 1; i <= pageCount; i++) {
     pages.push(i);
   }
 
-  let currentPage = props.currentPage;
+  const currentPage = props.currentPage;
 
   return (
     <div className={style.center}>
