@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { maxLengthCreator, required } from "../utils/validators/validators";
 import style from "./blocks/dialogs.module.css";
@@ -34,10 +35,12 @@ const MessangerForm = (props) => {
 const MessangerReduxForm = reduxForm({ form: "MessangerForm" })(MessangerForm);
 
 const Messanger = (props) => {
+  const dispatch = useDispatch()
   const id = props.friendId;
 
   const onSubmitMessanger = (value) => {
-    props.sendMessageClick(id, value.newMessageText);
+    dispatch(props.sendMessageClick(id, value.newMessageText));
+
   };
 
   const messageItemEl = props.friend.map((mI) => {

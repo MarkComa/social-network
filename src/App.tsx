@@ -10,8 +10,8 @@ import Preloader from "./components/preloader";
 import { withSuspense } from "./HOC/withSuspense";
 import { useAppDispatch, useAppSelector } from "./redux/hooks/hooks";
 
-const ChatContainer = React.lazy(
-	() => import("./components/componentConteiner/chatContainer"),
+const Chat = React.lazy(
+	() => import("./components/chat"),
 );
 const FriendsContainer = React.lazy(
 	() => import("./components/componentConteiner/friendsContainer"),
@@ -35,7 +35,7 @@ export const App = ():JSX.Element => {
 			<NavbarСontainer />
 			<Route
 				path='/dialogs/:friendId?'
-				render={withSuspense(ChatContainer)}
+				render={withSuspense(Chat)}
 			/>
 			<Route path='/friends' render={withSuspense(FriendsContainer)} />
 			<Route path='/dashboard' render={() => <DashboardContainer />} />
