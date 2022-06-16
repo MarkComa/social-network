@@ -35,7 +35,7 @@ export const setAuthUserData = (userId: string | null, login: string | null, ema
 	type: SET_AUTH_USER_DATA,
 	payload: { userId, login, email, isAuth },
 });
-export const setCaptcha = (captchaUrl:string) => ({
+export const setCaptcha = (captchaUrl:string | null) => ({
 	type: SET_CAPTCHA,
 	payload: { captchaUrl },
 });
@@ -50,7 +50,7 @@ export const getAuth = () => {
 	};
 };
 
-export const login = (email: string, password: string, rememberMe: boolean, captcha:string|null = null) => {
+export const login = (email: string, password: string, rememberMe: boolean, captcha:string | null = null) => {
 	return async (dispatch: AppDispatch) => {
 		const response = await authAPI.login(
 			email,
