@@ -27,7 +27,7 @@ export const App = ():JSX.Element => {
 	}, []);
 
 	if (!initialized) {
-		return <Preloader isFetching='true' />;
+		return <Preloader isFetching={true} />;
 	}
 
 	return (
