@@ -60,6 +60,7 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 		);
 		if (response.data.resultCode === 0) {
 			dispatch(getAuth());
+			dispatch(setCaptcha(null))
 		} else {
 			if (response.data.resultCode === 10) {
 				dispatch(getCaptcha());

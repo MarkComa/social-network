@@ -5,7 +5,7 @@ import {
 	saveAvatar,
 	setEditMode,
 } from "../redux/reducers/profileReducer";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import style from "./blocks/profile.module.css";
 import Preloader from "./preloader";
 import ProfileStatus from "./profileStatus";
@@ -19,6 +19,7 @@ const Profile = () => {
 	const status = useAppSelector((state) => state.profilePage.status);
 	const userIdMe = useAppSelector((state) => state.auth.userId);
 	const isEditMode = useAppSelector((state) => state.profilePage.isEditMode);
+	const isAuth = useAppSelector(state => state.auth.isAuth)
 	const dispatch = useAppDispatch();
 	let { userId } = useParams<{userId: string}>();
 	const isOwner = !userId;
@@ -31,6 +32,7 @@ const Profile = () => {
 		dispatch(getUserStatus(userId));
 		dispatch(getUserProfile(userId));
 	};
+	
 	useEffect(() => {
 		refreshProfile();
 	}, []);
@@ -41,6 +43,9 @@ const Profile = () => {
 
 	if (!profile) {
 		return <Preloader isFetching={isFetching} />;
+	}
+	if (!isAuth) {
+		return <Redirect to='/login' />;
 	}
 	//-----проверить типизацию эвента
 	const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Login from "./login";
+import {Login} from "./login";
 import logo from "../assets/images/logo.svg";
 import user from "../assets/images/user.svg";
 import cube from "../assets/images/cube.svg";
@@ -8,6 +8,7 @@ import dashboard from "../assets/images/dashboard.svg";
 import charts from "../assets/images/charts.svg";
 import wallet from "../assets/images/wallet.svg";
 import { useAppSelector } from "../redux/hooks/hooks";
+import { logout } from "../redux/reducers/authReducer";
 
 const Navbar = () => {
   const isAuth =  useAppSelector(state => state.auth.isAuth)
@@ -51,7 +52,7 @@ const Navbar = () => {
         </ul>
 
         <ul className="nav__item-bottom">
-          <Login isAuth={isAuth} login={login} />
+          <Login isAuth={isAuth} login={login} logout={logout}/>
         </ul>
       </nav>
     </div>
