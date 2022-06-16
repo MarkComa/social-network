@@ -1,6 +1,5 @@
 import "./App.css";
 import React, { useEffect } from "react";
-import NavbarСontainer from "./components/componentConteiner/navbarСontainer";
 import DashboardContainer from "./components/componentConteiner/dashboardContainer";
 import { Route } from "react-router-dom";
 import { Users } from "./components/users";
@@ -9,6 +8,7 @@ import { initializeApp } from "./redux/reducers/appReducer";
 import Preloader from "./components/preloader";
 import { withSuspense } from "./HOC/withSuspense";
 import { useAppDispatch, useAppSelector } from "./redux/hooks/hooks";
+import Navbar from "./components/navbar";
 
 const Chat = React.lazy(
 	() => import("./components/chat"),
@@ -32,7 +32,7 @@ export const App = ():JSX.Element => {
 
 	return (
 		<div className='dashboard'>
-			<NavbarСontainer />
+			<Navbar />
 			<Route
 				path='/dialogs/:friendId?'
 				render={withSuspense(Chat)}

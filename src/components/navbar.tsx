@@ -7,8 +7,12 @@ import cube from "../assets/images/cube.svg";
 import dashboard from "../assets/images/dashboard.svg";
 import charts from "../assets/images/charts.svg";
 import wallet from "../assets/images/wallet.svg";
+import { useAppSelector } from "../redux/hooks/hooks";
 
-const Navbar = (props) => {
+const Navbar = () => {
+  const isAuth =  useAppSelector(state => state.auth.isAuth)
+  const login = useAppSelector(state => state.auth.login)
+
   return (
     <div className="dashboard__nav">
       <nav className="nav">
@@ -47,7 +51,7 @@ const Navbar = (props) => {
         </ul>
 
         <ul className="nav__item-bottom">
-          <Login isAuth={props.isAuth} login={props.login} />
+          <Login isAuth={isAuth} login={login} />
         </ul>
       </nav>
     </div>
