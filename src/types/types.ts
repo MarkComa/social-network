@@ -32,3 +32,11 @@ export interface Photos {
   small: string | null;
   large: string | null;
 }
+export type FriendType = {
+	id: string;
+	fName: string;
+	messages: MessageType[];
+};
+export type MessageType = {
+	message: string;
+};

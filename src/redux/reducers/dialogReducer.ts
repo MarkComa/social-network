@@ -1,18 +1,12 @@
 import { AnyAction } from "@reduxjs/toolkit";
+import { FriendType } from "../../types/types";
 
 const ADD_MESSAGE = "ADD-MESSAGE";
 
 type StateProps = {
 	friends: FriendType[];
 };
-type FriendType = {
-	id: string;
-	fName: string;
-	messages: MessageType[];
-};
-type MessageType = {
-	message: string;
-};
+
 
 const initialState: StateProps = {
 	friends: [

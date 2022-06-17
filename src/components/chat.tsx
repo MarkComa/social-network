@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./blocks/dialogs.module.css";
 import { sendMessageClick } from "../redux/reducers/dialogReducer";
-import Messanger from "./messanger";
+import Messanger from "./messager";
 import { useAppSelector } from "../redux/hooks/hooks";
 import { Link, useParams } from "react-router-dom";
 
@@ -28,7 +28,6 @@ const Chat = () => {
 			<div className={style.content}>
 				<ul className={style.list}>{dialogItemEl}</ul>
 				<Messanger
-					sendMessageClick={sendMessageClick}
 					friend={friend}
 					friendId={friendId}
 				/>

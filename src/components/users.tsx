@@ -4,11 +4,6 @@ import {
 	requestUsers,
 	setCurrentPage,
 } from "../redux/reducers/usersReducer";
-import {
-	getTotalUsersCount,
-	getCurrentPage,
-	getIsFetching,
-} from "../redux/selectors/user-selectors";
 import style from "./blocks/users.module.css";
 import Pagination from "./common/pagginator";
 import UserCard from "./userCard";
@@ -17,11 +12,11 @@ import { useEffect } from "react";
 import { IUser } from "../types/types";
 
 export const Users = () => {
-	const isFetching = useAppSelector((state) => getIsFetching(state));
-	const users = useAppSelector((state) => state.usersPage.users);
+	const isFetching = useAppSelector(state => state.usersPage.isFetching);
+	const users = useAppSelector(state => state.usersPage.users);
 	const pageSize = useAppSelector(state => state.usersPage.pageSize);
-	const totalUsersCount = useAppSelector((state) => getTotalUsersCount(state));
-	const currentPage = useAppSelector((state) => getCurrentPage(state));
+	const totalUsersCount = useAppSelector(state => state.usersPage.totalUsersCount);
+	const currentPage = useAppSelector(state => state.usersPage.currentPage);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
