@@ -41,7 +41,7 @@ const UserCard = ({ user }: UserCardProps) => {
 						<button
 							className={style.btn}
 							disabled={followingInProgress.some(
-								(id: string) => id === user.id,
+								(id: string | null) => id === user.id,
 							)}
 							onClick={() => {
 								dispatch(unfollow(user.id));

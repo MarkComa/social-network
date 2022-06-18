@@ -1,9 +1,9 @@
 import React, { ChangeEventHandler, useEffect } from "react";
 import {
+	actionsProfile,
 	getUserProfile,
 	getUserStatus,
 	saveAvatar,
-	setEditMode,
 } from "../redux/reducers/profileReducer";
 import { Redirect, useParams } from "react-router-dom";
 import style from "./blocks/profile.module.css";
@@ -12,6 +12,7 @@ import ProfileStatus from "./profileStatus";
 import { ProfileData, ProfileDataForm } from "./profileData";
 import { DownloadFileBtn } from "./DownloadFileBtn";
 import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
+import { actionsUsers } from "../redux/reducers/usersReducer";
 
 const Profile = () => {
 	const profile = useAppSelector((state) => state.profilePage.profile);
@@ -38,7 +39,7 @@ const Profile = () => {
 	}, []);
 	useEffect(() => {
 		refreshProfile();
-		userId && dispatch(setEditMode(false))
+		userId && dispatch(actionsProfile.setEditMode(false))
 	}, [userId]);
 
 	if (!profile) {
@@ -57,7 +58,7 @@ const Profile = () => {
 	};
 
 	const onSetEditMode = () => {
-		dispatch(setEditMode(!isEditMode));
+		dispatch(actionsProfile.setEditMode(!isEditMode));
 	};
 	return (
 		<div className={style.profile}>

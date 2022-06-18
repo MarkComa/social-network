@@ -7,7 +7,7 @@ type Data = {
 };
 type Props = {
 	friendId: string;
-	sendMessageClick: (id: string, newMessageText: string)=>void;
+	sendMessageClick: (id: string, newMessageText: string)=> any ;
 };
 
 export const MessangerForm = ({ friendId, sendMessageClick }:Props) => {

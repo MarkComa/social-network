@@ -1,5 +1,5 @@
 import { ActionsType } from './../redux-store';
-import { actions } from "./usersReducer";
+import { actionsUsers } from "./usersReducer";
 import { usersAPI, profileAPI } from "../../api/api";
 import { PhotosType, ProfileType } from "../../types/types";
 import { AppDispatch, RootState } from "../redux-store";
@@ -62,9 +62,9 @@ export const actionsProfile = {
 
 export const getUserProfile = (userId: string | null) => {
   return async (dispatch: AppDispatch) => {
-    dispatch(actions.toggleIsFetching(true));
+    dispatch(actionsUsers.toggleIsFetching(true));
     const response = await usersAPI.getUsersProfile(userId);
-    dispatch(actions.toggleIsFetching(false));
+    dispatch(actionsUsers.toggleIsFetching(false));
     dispatch(actionsProfile.setUserProfile(response.data));
   };
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
 import {
 	requestUsers,
-	setCurrentPage,
+	actionsUsers,
 } from "../redux/reducers/usersReducer";
 import style from "./blocks/users.module.css";
 import Pagination from "./common/pagginator";
@@ -24,7 +24,7 @@ export const Users = () => {
 	}, []);
 
 	const onPageChanged = (pageNumber: number) => {
-		dispatch(setCurrentPage(pageNumber));
+		dispatch(actionsUsers.setCurrentPage(pageNumber));
 		dispatch(requestUsers(pageSize, pageNumber));
 	};
 	// Перенести лишние селекторы и диспатчи в компоненту userCard
