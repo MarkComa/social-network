@@ -1,10 +1,8 @@
-import React from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
 import {
 	requestUsers,
 	actionsUsers,
 } from "../redux/reducers/usersReducer";
-import style from "./blocks/users.module.css";
 import Pagination from "./common/pagginator";
 import UserCard from "./userCard";
 import Preloader from "./preloader";
@@ -31,14 +29,14 @@ export const Users = () => {
 	return (
 		<>
 			<Preloader isFetching={isFetching} />
-			<div className={style.users__page}>
+			<div>
 				<Pagination
 					currentPage={currentPage}
 					onPageChanged={onPageChanged}
 					totalUsersCount={totalUsersCount}
 					pageSize={pageSize}
 				/>
-				<div className={style.users}>
+				<div>
 					{users.map((user:IUser) => (
 						<div key={user.id}>
 							<UserCard

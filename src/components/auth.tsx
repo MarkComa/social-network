@@ -1,5 +1,3 @@
-import style from "./blocks/auth.module.css";
-import fcStyle from "./blocks/formsControls.module.css";
 import { login } from "../redux/reducers/authReducer";
 import { Redirect } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -29,16 +27,14 @@ const AuthForm = ({ captchaUrl }: AuthFormProps) => {
 	
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			{errors.email && <div className={fcStyle.formSummaryError}>??</div>}
-			<div className={style.title}>Логин</div>
+			{errors.email && <div>??</div>}
+			<div> Логин</div>
 			<input
-				className={style.loginInput}
 				{...register("email", { required: true })}
 				type={"text"}
 			/>
-			<div className={style.title}>Пароль</div>
+			<div>Пароль</div>
 			<input
-				className={style.passwordInput}
 				{...register("password", { required: true })}
 				type={"password"}
 			/>
@@ -48,7 +44,6 @@ const AuthForm = ({ captchaUrl }: AuthFormProps) => {
 				<>
 					<img src={captchaUrl} alt='captcha' />
 					<input
-						className={style.loginInput}
 						{...register("captcha", { required: true })}
 						type='text'
 						placeholder={"Введите каптчу"}
@@ -68,7 +63,7 @@ export const Auth = () => {
 	}
 
 	return (
-		<div className={style.auth}>
+		<div>
 			<AuthForm captchaUrl={captchaUrl} />
 		</div>
 	);

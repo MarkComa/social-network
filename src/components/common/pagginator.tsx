@@ -1,6 +1,3 @@
-import React from "react";
-import style from "../blocks/pagination.module.css";
-
 type Props = {
 	totalUsersCount: number;
 	pageSize: number;
@@ -16,7 +13,7 @@ const Pagination = ({ totalUsersCount, pageSize, currentPage, onPageChanged }: P
 	}
 
 	return (
-		<div className={style.center}>
+		<div>
 			{pages.map((p) => {
 				if (
 					(p < currentPage + 3 && p > currentPage - 3) ||
@@ -25,7 +22,6 @@ const Pagination = ({ totalUsersCount, pageSize, currentPage, onPageChanged }: P
 				) {
 					return (
 						<button
-							className={style.btn__page}
 							key={p}
 							onClick={() => {
 								onPageChanged(p);

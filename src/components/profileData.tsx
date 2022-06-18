@@ -1,5 +1,3 @@
-import React from "react";
-import style from "./blocks/profileData.module.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { updateUserProfile } from "../redux/reducers/profileReducer";
 import { ContactsType, ProfileType } from "../types/types";
@@ -13,8 +11,8 @@ export const ProfileData = ({ profile }: Props) => {
 	const contacts = profile.contacts;
 	return (
 		<div>
-			<div className={style.fName}>{profile.fullName}</div>
-			<div className={style.contact}>
+			<div>{profile.fullName}</div>
+			<div>
 				<h1>Contacts</h1>
 				<ul>
 					{contacts && Object.keys(contacts).map((key) => (
@@ -26,13 +24,13 @@ export const ProfileData = ({ profile }: Props) => {
 					))}
 				</ul>
 			</div>
-			<div className={style.job}>
+			<div>
 				{profile.lookingForAJob ? "В поиске работы" : "Работа подождет"}
 			</div>
-			<div className={style.jobDescription}>
+			<div>
 				{profile.lookingForAJobDescription}
 			</div>
-			<div className={style.aboutMe}>{profile.aboutMe}</div>
+			<div>{profile.aboutMe}</div>
 		</div>
 	);
 };
@@ -52,14 +50,14 @@ export const ProfileDataForm = ({ profile }: Props) => {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<div className={style.fName}>
+			<div>
 				Никнейм:
 				<input
 					{...register("fullName")}
 					type='text'
 				/>
 			</div>
-			<div className={style.contact}>
+			<div>
 				<h1>Contacts</h1>
 				<ul>
 					{contacts && Object.keys(contacts).map((key) => {
@@ -75,20 +73,20 @@ export const ProfileDataForm = ({ profile }: Props) => {
 				</ul>
 			</div>
 
-			<div className={style.job}>
+			<div>
 				Поиск работы:
 				<input
 					{...register("lookingForAJob")}
 					type='checkbox'
 				/>
 			</div>
-			<div className={style.jobDescription}>
+			<div>
 				Описание работы:
 				<textarea
 					{...register("lookingForAJobDescription")}
 				/>
 			</div>
-			<div className={style.aboutMe}>
+			<div>
 				Обо мне:
 				<textarea {...register("aboutMe")} />
 			</div>

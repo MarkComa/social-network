@@ -1,5 +1,3 @@
-import React from "react";
-import style from "./blocks/userCard.module.css";
 import { follow, unfollow } from "../redux/reducers/usersReducer";
 import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
 import { Link } from "react-router-dom";
@@ -17,11 +15,10 @@ const UserCard = ({ user }: UserCardProps) => {
 	const dispatch = useAppDispatch();
 
 	return (
-		<div className={style.user}>
+		<div>
 			<div>
 				<Link to={`/profile/${user.id}`}>
 					<img
-						className={style.user__avatar}
 						src={
 							user.photos.small != null
 								? user.photos.small
@@ -30,8 +27,8 @@ const UserCard = ({ user }: UserCardProps) => {
 						alt='avatar'
 					/>
 				</Link>
-				<div className={style.user__info}>
-					<div className={style.fullname}>{user.name}</div>
+				<div>
+					<div>{user.name}</div>
 					<div>{user.status}</div>
 				</div>
 			</div>
@@ -39,7 +36,6 @@ const UserCard = ({ user }: UserCardProps) => {
 				<div>
 					{user.followed ? (
 						<button
-							className={style.btn}
 							disabled={followingInProgress.some(
 								(id: string | null) => id === user.id,
 							)}
@@ -50,7 +46,6 @@ const UserCard = ({ user }: UserCardProps) => {
 						</button>
 					) : (
 						<button
-							className={style.btn}
 							disabled={followingInProgress.some(
 								(id) => id === user.id,
 							)}

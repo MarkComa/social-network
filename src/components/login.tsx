@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import { MouseEventHandler } from "react";
 import loginIcon from "../assets/images/login.svg";
 import logoutIcon from "../assets/images/logout.svg";
 import { useAppDispatch } from "../redux/hooks/hooks";

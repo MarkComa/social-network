@@ -1,19 +1,18 @@
-import React, { ChangeEventHandler } from "react";
+import { ChangeEventHandler } from "react";
 import DownloadIcon from "../assets/images/iconsDownload.png";
-import s from './blocks/downloadFileBtn.module.css'
 
-export const DownloadFileBtn = ({onChange}:Props) => {
+export const DownloadFileBtn = ({ onChange }: Props) => {
 	return (
-		<div className={s.input}>
-			<input className={s.input__file} name="input" id="input" type='file' onChange={onChange} />
-			<label className={s.label} htmlFor="input">
-				<img src={DownloadIcon} className={s.img} alt='icon'/>
-				<div className={s.title}>Загрузить файл</div>
+		<div>
+			<input name='input' id='input' type='file' onChange={onChange} />
+			<label htmlFor='input'>
+				<img src={DownloadIcon} alt='icon' />
+				<div>Загрузить файл</div>
 			</label>
 		</div>
 	);
 };
 
 interface Props {
-	onChange:  ChangeEventHandler<HTMLInputElement>
+	onChange: ChangeEventHandler<HTMLInputElement>;
 }

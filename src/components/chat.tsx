@@ -1,6 +1,3 @@
-import React from "react";
-import style from "./blocks/dialogs.module.css";
-import { sendMessageClick } from "../redux/reducers/dialogReducer";
 import Messanger from "./messager";
 import { useAppSelector } from "../redux/hooks/hooks";
 import { Link, useParams } from "react-router-dom";
@@ -15,7 +12,7 @@ const Chat = () => {
 	}
 
 	const dialogItemEl = friends.map((dI) => {
-		return <DialogItem fname={dI.fName} id={dI.id} />;
+		return <DialogItem id={dI.id} />;
 	});
 
 	const friend = friends.filter((i) => {
@@ -23,10 +20,10 @@ const Chat = () => {
 	});
 
 	return (
-		<section className={style.dialogs}>
-			<h1 className={style.title}>Диалоги</h1>
-			<div className={style.content}>
-				<ul className={style.list}>{dialogItemEl}</ul>
+		<section>
+			<h1>Диалоги</h1>
+			<div >
+				<ul>{dialogItemEl}</ul>
 				<Messanger
 					friend={friend}
 					friendId={friendId}
@@ -39,10 +36,9 @@ export default Chat
 // написать тип ->
 const DialogItem = (props:any) => { 
   return (
-    <li className={style.list__item}>
+    <li>
       <Link
-        to={`/dialogs/` + props.id}
-        className={style.list__item__link}>
+        to={`/dialogs/` + props.id}>
         {props.name} {props.fname}
       </Link>
     </li>

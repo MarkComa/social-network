@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useEffect } from "react";
+import { ChangeEventHandler, useEffect } from "react";
 import {
 	actionsProfile,
 	getUserProfile,
@@ -6,13 +6,11 @@ import {
 	saveAvatar,
 } from "../redux/reducers/profileReducer";
 import { Redirect, useParams } from "react-router-dom";
-import style from "./blocks/profile.module.css";
 import Preloader from "./preloader";
 import ProfileStatus from "./profileStatus";
 import { ProfileData, ProfileDataForm } from "./profileData";
 import { DownloadFileBtn } from "./DownloadFileBtn";
 import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
-import { actionsUsers } from "../redux/reducers/usersReducer";
 
 const Profile = () => {
 	const profile = useAppSelector((state) => state.profilePage.profile);
@@ -20,9 +18,9 @@ const Profile = () => {
 	const status = useAppSelector((state) => state.profilePage.status);
 	const userIdMe = useAppSelector((state) => state.auth.userId);
 	const isEditMode = useAppSelector((state) => state.profilePage.isEditMode);
-	const isAuth = useAppSelector(state => state.auth.isAuth)
+	const isAuth = useAppSelector((state) => state.auth.isAuth);
 	const dispatch = useAppDispatch();
-	let { userId } = useParams<{userId: string}>();
+	let { userId } = useParams<{ userId: string }>();
 	const isOwner = !userId;
 
 	const refreshProfile = () => {
@@ -33,13 +31,13 @@ const Profile = () => {
 		dispatch(getUserStatus(userId));
 		dispatch(getUserProfile(userId));
 	};
-	
+
 	useEffect(() => {
 		refreshProfile();
 	}, []);
 	useEffect(() => {
 		refreshProfile();
-		userId && dispatch(actionsProfile.setEditMode(false))
+		userId && dispatch(actionsProfile.setEditMode(false));
 	}, [userId]);
 
 	if (!profile) {
@@ -61,9 +59,9 @@ const Profile = () => {
 		dispatch(actionsProfile.setEditMode(!isEditMode));
 	};
 	return (
-		<div className={style.profile}>
-			<div className={style.profile__user}>
-				<div className={style.avatar}>
+		<div>
+			<div>
+				<div>
 					<img
 						src={
 							profile.photos.large === null
@@ -76,16 +74,16 @@ const Profile = () => {
 						<DownloadFileBtn onChange={onChange} />
 					)}
 				</div>
-				<div className={style.status}>
-					<ProfileStatus status={status} isOwner={isOwner}/>
+				<div>
+					<ProfileStatus status={status} isOwner={isOwner} />
 				</div>
 				{isOwner && (
-					<button onClick={onSetEditMode} className={style.btn}>
+					<button onClick={onSetEditMode}>
 						{!isEditMode ? "Редактировать" : "Закрыть"}
 					</button>
 				)}
 				{!isEditMode ? (
-					<div className={style.profileData}>
+					<div>
 						<ProfileData profile={profile} />
 					</div>
 				) : (

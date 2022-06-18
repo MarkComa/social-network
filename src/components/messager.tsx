@@ -1,6 +1,5 @@
 import { sendMessageClick } from "../redux/reducers/dialogReducer";
 import { FriendType, MessageType } from "../types/types";
-import style from "./blocks/dialogs.module.css";
 import { MessangerForm } from "./messagerForm";
 
 type Props = {
@@ -17,9 +16,9 @@ const Messanger = ({ friend, friendId }: Props) => {
 	});
 
 	return (
-		<div className={style.chat}>
-			<div className={style.message}>{messageItemEl}</div>
-			<div className={style.actionMessage}>
+		<div>
+			<div>{messageItemEl}</div>
+			<div>
 				<MessangerForm
 					friendId={friendId}
 					sendMessageClick={sendMessageClick}
@@ -40,6 +39,6 @@ const MessageList = ({ messages }: MessageListProps) => {
 };
 
 const MessageItem = (props: MessageType) => {
-	return <div className={style.myMessage}>{props.message}</div>;
+	return <div>{props.message}</div>;
 };
 export default Messanger;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEventHandler, FocusEventHandler, MouseEventHandler } from "react";
+import { useState, useEffect, ChangeEventHandler, FocusEventHandler, MouseEventHandler } from "react";
 import { useAppDispatch } from "../redux/hooks/hooks";
 import { updateUserStatus } from "../redux/reducers/profileReducer";
 
