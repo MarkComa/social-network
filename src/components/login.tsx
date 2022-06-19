@@ -1,4 +1,5 @@
 import { MouseEventHandler } from "react";
+import { Link } from "react-router-dom";
 import loginIcon from "../assets/images/login.svg";
 import logoutIcon from "../assets/images/logout.svg";
 import { useAppDispatch } from "../redux/hooks/hooks";
@@ -7,13 +8,12 @@ import { AppDispatch } from "../redux/redux-store";
 
 type Props = {
 	isAuth: boolean;
-	login: string | null;
 	logout: () => (dispatch: AppDispatch) => Promise<void>
 };
 
 
 
-export const Login = ({ isAuth, login, logout }: Props) => {
+export const Login = ({ isAuth, logout }: Props) => {
 	const dispatch = useAppDispatch();
 	const onLogout: MouseEventHandler<HTMLButtonElement> = () => {
 		dispatch(logout())
@@ -22,13 +22,11 @@ export const Login = ({ isAuth, login, logout }: Props) => {
 		<div>
 			{isAuth ? (
 				<button onClick={onLogout}>
-					<img src={logoutIcon} alt={"Выход"} />
-					<div>{login}</div>
+					<div>Выход</div>
 				</button>
 			) : (
 				<button>
-					<img src={loginIcon} alt={"Вход"} />
-					<div>Вход</div>
+					<Link to='/login'>Вход</Link>
 				</button>
 			)}
 		</div>

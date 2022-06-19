@@ -50,7 +50,7 @@ const Navbar = () => {
 					</li>
 				</ul>
 				<ul>
-					<Login isAuth={isAuth} login={login} logout={logout} />
+					<Login isAuth={isAuth} logout={logout} />
 				</ul>
 			</nav>
 		</div>

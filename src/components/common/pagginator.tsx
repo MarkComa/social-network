@@ -1,38 +1,20 @@
+import { Pagination } from "antd";
+
 type Props = {
 	totalUsersCount: number;
-	pageSize: number;
   currentPage: number;
+	pageSize: number;
   onPageChanged: (pageNumber: number) => void
 };
 
-const Pagination = ({ totalUsersCount, pageSize, currentPage, onPageChanged }: Props) => {
-	const pageCount = Math.ceil(totalUsersCount / pageSize);
-	const pages = [];
-	for (let i = 1; i <= pageCount; i++) {
-		pages.push(i);
-	}
-
+const MyPagination = ({pageSize, totalUsersCount, currentPage, onPageChanged }: Props) => {
 	return (
-		<div>
-			{pages.map((p) => {
-				if (
-					(p < currentPage + 3 && p > currentPage - 3) ||
-					p === 1 ||
-					p === pages.length
-				) {
-					return (
-						<button
-							key={p}
-							onClick={() => {
-								onPageChanged(p);
-							}}>
-							{p}
-						</button>
-					);
-				}
-			})}
-		</div>
+		<Pagination current={currentPage} onChange={onPageChanged} total={totalUsersCount} pageSize={pageSize} showSizeChanger={false} />
 	);
 };
 
-export default Pagination;
+export default MyPagination;
+
+
+
+
