@@ -11,10 +11,7 @@ import { withSuspense } from "./HOC/withSuspense";
 import { useAppDispatch, useAppSelector } from "./redux/hooks/hooks";
 import loginIcon from "./assets/images/login.svg";
 import logoutIcon from "./assets/images/logout.svg";
-import {
-	DesktopOutlined,
-	PieChartOutlined,
-} from "@ant-design/icons";
+import { UserOutlined, TeamOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Layout, Menu } from "antd";
 import { logout } from "./redux/reducers/authReducer";
@@ -36,7 +33,7 @@ export const App: React.FC = () => {
 	useEffect(() => {
 		dispatch(initializeApp());
 	}, []);
-	const { Header, Content, Sider } = Layout;
+	const { Content, Sider } = Layout;
 
 	function getItem(
 		label: React.ReactNode,
@@ -55,19 +52,19 @@ export const App: React.FC = () => {
 		return <Preloader isFetching={true} />;
 	}
 
-
 	const items: MenuItem[] = [
+		getItem(<Link to={"/profile"}>Профиль</Link>, "1", <UserOutlined />),
+		getItem(<Link to={"/users"}>Разрабочики</Link>, "2", <TeamOutlined/>),
 		getItem(
-			<Link to={"/profile"}>Профиль</Link>,
-			"1",
-			<PieChartOutlined />,
+			<Login isAuth={isAuth} logout={logout} />,
+			"3",
+			<img
+				width='10'
+				height='10'
+				src={isAuth ? logoutIcon : loginIcon}
+				alt='icon'
+			/>,
 		),
-		getItem(
-			<Link to={"/users"}>Разрабочики</Link>,
-			"2",
-			<DesktopOutlined />,
-		),
-		getItem(<Login isAuth={isAuth} logout={logout} />, "3", <img width='10' height='10' src={isAuth ? logoutIcon : loginIcon} alt='icon'/>),
 	];
 
 	return (

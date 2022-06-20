@@ -38,10 +38,10 @@ export const Users = () => {
 						pageSize={pageSize}
 					/>
 				</Row>
-				<Row justify='start' align='middle' gutter={[15, 15]}>
+				<Row justify='start' align='middle' gutter={[15, 10]}>
 					{users.map((user: IUser) => (
 						<div key={user.id}>
-							<Col>
+							<Col span={4}>
 								<UserCard user={user} />
 							</Col>
 						</div>

@@ -2,6 +2,7 @@ import { follow, unfollow } from "../redux/reducers/usersReducer";
 import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
 import { Link } from "react-router-dom";
 import { IUser } from "../types/types";
+import { Button, Card, Space } from "antd";
 
 interface UserCardProps {
 	user: IUser;
@@ -15,49 +16,53 @@ const UserCard = ({ user }: UserCardProps) => {
 	const dispatch = useAppDispatch();
 
 	return (
-		<div>
-			<div>
-				<Link to={`/profile/${user.id}`}>
-					<img
-						src={
-							user.photos.small != null
-								? user.photos.small
-								: "https://via.placeholder.com/90"
-						}
-						alt='avatar'
-					/>
-				</Link>
+		<Space direction='vertical' size='middle' style={{ display: "flex" }}>
+			<Card size='default'>
 				<div>
-					<div>{user.name}</div>
-					<div>{user.status}</div>
-				</div>
-			</div>
-			{isAuth ? (
-				<div>
-					{user.followed ? (
-						<button
-							disabled={followingInProgress.some(
-								(id: string | null) => id === user.id,
+					<Link to={`/profile/${user.id}`}>
+						<img
+							src={
+								user.photos.small != null
+									? user.photos.small
+									: "https://via.placeholder.com/90"
+							}
+							alt='avatar'
+						/>
+					</Link>
+					<div>
+						<div>{user.name}</div>
+						<div>{user.status}</div>
+					</div>
+					{isAuth ? (
+						<div>
+							{user.followed ? (
+								<Button
+									type={"primary"}
+									onClick={() => {
+										dispatch(unfollow(user.id));
+									}}
+									disabled={followingInProgress.some(
+										(id: string | null) => id === user.id,
+									)}>
+									Unfollow
+								</Button>
+							) : (
+								<Button
+									type='default'
+									disabled={followingInProgress.some(
+										(id) => id === user.id,
+									)}
+									onClick={() => {
+										dispatch(follow(user.id));
+									}}>
+									Follow
+								</Button>
 							)}
-							onClick={() => {
-								dispatch(unfollow(user.id));
-							}}>
-							Unfollow
-						</button>
-					) : (
-						<button
-							disabled={followingInProgress.some(
-								(id) => id === user.id,
-							)}
-							onClick={() => {
-								dispatch(follow(user.id));
-							}}>
-							Follow
-						</button>
-					)}
+						</div>
+					) : null}
 				</div>
-			) : null}
-		</div>
+			</Card>
+		</Space>
 	);
 };
 export default UserCard;
