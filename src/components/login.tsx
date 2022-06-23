@@ -1,7 +1,5 @@
 import { MouseEventHandler } from "react";
 import { Link } from "react-router-dom";
-import loginIcon from "../assets/images/login.svg";
-import logoutIcon from "../assets/images/logout.svg";
 import { useAppDispatch } from "../redux/hooks/hooks";
 import { AppDispatch } from "../redux/redux-store";
 

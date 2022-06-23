@@ -11,6 +11,7 @@ import ProfileStatus from "./profileStatus";
 import { ProfileData, ProfileDataForm } from "./profileData";
 import { DownloadFileBtn } from "./DownloadFileBtn";
 import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
+import { Col, Row, Typography } from "antd";
 
 const Profile = () => {
 	const profile = useAppSelector((state) => state.profilePage.profile);
@@ -58,10 +59,12 @@ const Profile = () => {
 	const onSetEditMode = () => {
 		dispatch(actionsProfile.setEditMode(!isEditMode));
 	};
+	const { Title } = Typography;
 	return (
 		<div>
-			<div>
-				<div>
+			<Title>Профиль</Title>
+			<Row>
+				<Col span={10}>
 					<img
 						src={
 							profile.photos.large === null
@@ -73,23 +76,29 @@ const Profile = () => {
 					{isOwner && isEditMode && (
 						<DownloadFileBtn onChange={onChange} />
 					)}
-				</div>
-				<div>
-					<ProfileStatus status={status} isOwner={isOwner} />
-				</div>
-				{isOwner && (
-					<button onClick={onSetEditMode}>
-						{!isEditMode ? "Редактировать" : "Закрыть"}
-					</button>
-				)}
-				{!isEditMode ? (
-					<div>
-						<ProfileData profile={profile} />
-					</div>
-				) : (
-					<ProfileDataForm profile={profile} />
-				)}
-			</div>
+				</Col>
+				<Col span={14}>
+					<Row>
+						<Col span={24}>
+							<ProfileStatus status={status} isOwner={isOwner} />
+						</Col>
+						<Col>
+							{!isEditMode ? (
+								<ProfileData profile={profile} />
+							) : (
+								<ProfileDataForm profile={profile} />
+							)}
+						</Col>
+					</Row>
+				</Col>
+			</Row>
+
+			<div></div>
+			{isOwner && (
+				<button onClick={onSetEditMode}>
+					{!isEditMode ? "Редактировать" : "Закрыть"}
+				</button>
+			)}
 		</div>
 	);
 };
