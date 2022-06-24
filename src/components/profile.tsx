@@ -11,7 +11,7 @@ import ProfileStatus from "./profileStatus";
 import { ProfileData, ProfileDataForm } from "./profileData";
 import { DownloadFileBtn } from "./DownloadFileBtn";
 import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
-import { Col, Row, Typography } from "antd";
+import { Col, Row, Typography, Image } from "antd";
 
 const Profile = () => {
 	const profile = useAppSelector((state) => state.profilePage.profile);
@@ -65,14 +65,15 @@ const Profile = () => {
 			<Title>Профиль</Title>
 			<Row>
 				<Col span={10}>
-					<img
-						src={
+				<Image
+            preview={false}
+            src={
 							profile.photos.large === null
 								? "https://via.placeholder.com/300"
 								: profile.photos.large
 						}
-						alt='avatar'
-					/>
+            width={200}
+          />
 					{isOwner && isEditMode && (
 						<DownloadFileBtn onChange={onChange} />
 					)}
