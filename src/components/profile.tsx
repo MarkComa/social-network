@@ -66,7 +66,7 @@ const Profile = () => {
 			<Row>
 				<Col span={10}>
 				<Image
-            preview={false}
+            preview={true}
             src={
 							profile.photos.large === null
 								? "https://via.placeholder.com/300"

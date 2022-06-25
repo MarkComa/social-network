@@ -1,13 +1,16 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { updateUserProfile } from "../redux/reducers/profileReducer";
 import { ContactsType, ProfileType } from "../types/types";
 import { useAppDispatch } from "../redux/hooks/hooks";
+import { Input } from "antd";
 
 interface Props {
 	profile: ProfileType;
 }
 
+
 export const ProfileData = ({ profile }: Props) => {
+	
 	const contacts = profile.contacts;
 	return (
 		<div>
@@ -36,11 +39,13 @@ export const ProfileData = ({ profile }: Props) => {
 };
 
 export const ProfileDataForm = ({ profile }: Props) => {
+	const { TextArea } = Input;
 	const dispatch = useAppDispatch();
 	const contacts = profile.contacts;
 	const {
 		register,
 		handleSubmit,
+		control,
 		formState: { errors },
 	} = useForm<ProfileType>({ defaultValues: { ...profile } });
 
@@ -64,9 +69,13 @@ export const ProfileDataForm = ({ profile }: Props) => {
 						return (
 							<li key={key}>
 								<span>{key} :</span>
-								<input
+								<Controller 
+													name={`contacts.${key as keyof ContactsType}`}
+													control={control}
+													render={({ field })=> <Input {...field}/>} />
+								{/* <input
 									{...register(`contacts.${key as keyof ContactsType}`)}
-								/>
+								/> */}
 							</li>
 						);
 					})}
@@ -82,13 +91,13 @@ export const ProfileDataForm = ({ profile }: Props) => {
 			</div>
 			<div>
 				Описание работы:
-				<textarea
+				<TextArea
 					{...register("lookingForAJobDescription")}
 				/>
 			</div>
 			<div>
 				Обо мне:
-				<textarea {...register("aboutMe")} />
+				<TextArea maxLength={100} {...register("aboutMe")} />
 			</div>
 			<input type='submit' value={"сохранить"} />
 		</form>
