@@ -1,3 +1,4 @@
+import Title from "antd/lib/typography/Title";
 import { useState, useEffect, ChangeEventHandler, FocusEventHandler, MouseEventHandler } from "react";
 import { useAppDispatch } from "../redux/hooks/hooks";
 import { updateUserStatus } from "../redux/reducers/profileReducer";
@@ -34,7 +35,7 @@ const ProfileStatus = (props:Props) => {
   };
 
     return (
-      <div>
+      <Title level={2} >
         {!editMode && (
           <div>
             <span onDoubleClick={activateEditMode}>
@@ -54,7 +55,7 @@ const ProfileStatus = (props:Props) => {
             />
           </div>
         )}
-      </div>
+      </Title>
     );
   
 }

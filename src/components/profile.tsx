@@ -11,7 +11,7 @@ import ProfileStatus from "./profileStatus";
 import { ProfileData, ProfileDataForm } from "./profileData";
 import { DownloadFileBtn } from "./DownloadFileBtn";
 import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
-import { Col, Row, Typography, Image } from "antd";
+import { Col, Row, Typography, Image, Space, Affix } from "antd";
 
 const Profile = () => {
 	const profile = useAppSelector((state) => state.profilePage.profile);
@@ -65,15 +65,15 @@ const Profile = () => {
 			<Title>Профиль</Title>
 			<Row>
 				<Col span={10}>
-				<Image
-            preview={true}
-            src={
+					<Image
+						preview={true}
+						src={
 							profile.photos.large === null
 								? "https://via.placeholder.com/300"
 								: profile.photos.large
 						}
-            width={200}
-          />
+						width={200}
+					/>
 					{isOwner && isEditMode && (
 						<DownloadFileBtn onChange={onChange} />
 					)}
@@ -93,13 +93,13 @@ const Profile = () => {
 					</Row>
 				</Col>
 			</Row>
-
-			<div></div>
-			{isOwner && (
-				<button onClick={onSetEditMode}>
-					{!isEditMode ? "Редактировать" : "Закрыть"}
-				</button>
-			)}
+			<Affix style={{ position: 'fixed', top: '90px', right: '30px' }}>
+				{isOwner && (
+					<button onClick={onSetEditMode}>
+						{!isEditMode ? "Редактировать" : "Закрыть"}
+					</button>
+				)}
+			</Affix>
 		</div>
 	);
 };
