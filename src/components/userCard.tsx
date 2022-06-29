@@ -3,9 +3,7 @@ import { useAppSelector } from "../redux/hooks/hooks";
 import { Link } from "react-router-dom";
 import { IUser } from "../types/types";
 import { Image, Card, Space } from "antd";
-import { ToggleFollow } from "./toggleFollow";
-import { maxHeaderSize } from "http";
-import { kMaxLength } from "buffer";
+import { ToggleFollow } from "./toggleIsFollow";
 
 interface UserCardProps {
 	user: IUser;

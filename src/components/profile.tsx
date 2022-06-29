@@ -12,6 +12,7 @@ import { ProfileData, ProfileDataForm } from "./profileData";
 import { DownloadFileBtn } from "./DownloadFileBtn";
 import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
 import { Col, Row, Typography, Image, Space, Affix } from "antd";
+import { EditOutlined } from "@ant-design/icons";
 
 const Profile = () => {
 	const profile = useAppSelector((state) => state.profilePage.profile);
@@ -64,7 +65,7 @@ const Profile = () => {
 		<div>
 			<Title>Профиль</Title>
 			<Row>
-				<Col span={10}>
+				<Col md={10} sm={24}>
 					<Image
 						preview={true}
 						src={
@@ -78,7 +79,7 @@ const Profile = () => {
 						<DownloadFileBtn onChange={onChange} />
 					)}
 				</Col>
-				<Col span={14}>
+				<Col md={14} sm={24}>
 					<Row>
 						<Col span={24}>
 							<ProfileStatus status={status} isOwner={isOwner} />
@@ -92,14 +93,24 @@ const Profile = () => {
 						</Col>
 					</Row>
 				</Col>
+				<Col>
+					<Affix
+						style={{
+							position: "fixed",
+							top: "90px",
+							right: "30px",
+						}}>
+						{isOwner && (
+							<button onClick={onSetEditMode}>
+								<span className='editProfile'>
+									{!isEditMode ? "Редактировать" : "Закрыть"}
+								</span>
+								<span className='editIcon'><EditOutlined style={{ fontSize: '30px'}} /></span>
+							</button>
+						)}
+					</Affix>
+				</Col>
 			</Row>
-			<Affix style={{ position: 'fixed', top: '90px', right: '30px' }}>
-				{isOwner && (
-					<button onClick={onSetEditMode}>
-						{!isEditMode ? "Редактировать" : "Закрыть"}
-					</button>
-				)}
-			</Affix>
 		</div>
 	);
 };

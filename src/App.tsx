@@ -17,6 +17,7 @@ import { Layout, Menu } from "antd";
 import { logout } from "./redux/reducers/authReducer";
 import { Login } from "./components/login";
 import { Header } from "antd/lib/layout/layout";
+import { User } from "./components/user";
 
 const Chat = React.lazy(() => import("./components/chat"));
 const FriendsList = React.lazy(() => import("./components/friendsList"));
@@ -78,7 +79,7 @@ export const App: React.FC = () => {
 				<Menu theme='dark' mode='inline' items={items}></Menu>
 			</Sider>
 			<Layout className='site-layout'>
-				<Header><div>Здесь будет компонент с ник неймом</div></Header>
+				<Header><User /></Header>
 				<Content style={{ margin: "0 16px" }}>
 					<div
 						className='site-layout-background'
