@@ -18,6 +18,7 @@ import { logout } from "./redux/reducers/authReducer";
 import { Login } from "./components/login";
 import { Header } from "antd/lib/layout/layout";
 import { User } from "./components/user";
+import { profile } from "console";
 
 const Chat = React.lazy(() => import("./components/chat"));
 const FriendsList = React.lazy(() => import("./components/friendsList"));
@@ -29,6 +30,7 @@ export const App: React.FC = () => {
 	const initialized = useAppSelector((state) => state.app.initialized);
 	const isAuth = useAppSelector((state) => state.auth.isAuth);
 	const login = useAppSelector((state) => state.auth.login);
+	const userName = useAppSelector(state => state.profilePage.profile?.fullName)
 	const [collapsed, setCollapsed] = useState(false);
 	const dispatch = useAppDispatch();
 
@@ -57,9 +59,10 @@ export const App: React.FC = () => {
 	const items: MenuItem[] = [
 		getItem(<Link to={"/profile"}>Профиль</Link>, "1", <UserOutlined />),
 		getItem(<Link to={"/users"}>Разрабочики</Link>, "2", <TeamOutlined/>),
+		getItem(<Link to={"/friends"}>Подписки</Link>, "3", <TeamOutlined/>),
 		getItem(
 			<Login isAuth={isAuth} logout={logout} />,
-			"3",
+			"4",
 			<img
 				width='10'
 				height='10'
@@ -79,7 +82,7 @@ export const App: React.FC = () => {
 				<Menu theme='dark' mode='inline' items={items}></Menu>
 			</Sider>
 			<Layout className='site-layout'>
-				<Header><User /></Header>
+				<Header><User login={login}/></Header>
 				<Content style={{ margin: "0 16px" }}>
 					<div
 						className='site-layout-background'

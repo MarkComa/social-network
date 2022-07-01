@@ -5,48 +5,51 @@ import UserCard from "./userCard";
 import Preloader from "./preloader";
 import { useEffect } from "react";
 import { IUser } from "../types/types";
-import { Col, Row } from "antd";
+import { Col, Row, Space } from "antd";
 
 export const Users = () => {
-	const isFetching = useAppSelector((state) => state.usersPage.isFetching);
-	const users = useAppSelector((state) => state.usersPage.users);
-	const pageSize = useAppSelector((state) => state.usersPage.pageSize);
+	const isFetching = useAppSelector((state) => state.users.isFetching);
+	const users = useAppSelector((state) => state.users.users);
+	const pageSize = useAppSelector((state) => state.users.pageSize);
 	const totalUsersCount = useAppSelector(
-		(state) => state.usersPage.totalUsersCount,
+		(state) => state.users.totalUsersCount,
 	);
-	const currentPage = useAppSelector((state) => state.usersPage.currentPage);
+	const currentPage = useAppSelector((state) => state.users.currentPage);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		dispatch(requestUsers(pageSize, currentPage));
-	}, []);
+	}, [totalUsersCount]);
+	
 
 	const onPageChanged = (pageNumber: number) => {
 		dispatch(actionsUsers.setCurrentPage(pageNumber));
 		dispatch(requestUsers(pageSize, pageNumber));
 	};
-	// Перенести лишние селекторы и диспатчи в компоненту userCard
+	// Перенести лишние селекторы и диспатчи в компонент userCard
 	return (
 		<>
 			<Preloader isFetching={isFetching} />
 			<div>
-				<Row justify='center'>
-					<Pagination
-						currentPage={currentPage}
-						onPageChanged={onPageChanged}
-						totalUsersCount={totalUsersCount}
-						pageSize={pageSize}
-					/>
-				</Row>
-				<Row justify='start' align='middle' gutter={[15, 10]}>
-					{users.map((user: IUser) => (
-						<div key={user.id}>
-							<Col span={4}>
-								<UserCard user={user} />
-							</Col>
-						</div>
-					))}
-				</Row>
+				<Space direction='vertical' size='middle'>
+					<Row justify='center'>
+						<Pagination
+							currentPage={currentPage}
+							onPageChanged={onPageChanged}
+							totalUsersCount={totalUsersCount}
+							pageSize={pageSize}
+						/>
+					</Row>
+					<Row justify='center' align='middle' gutter={[15, 10]}>
+						{users.map((user: IUser) => (
+							<div key={user.id}>
+								<Col span={4}>
+									<UserCard user={user} />
+								</Col>
+							</div>
+						))}
+					</Row>
+				</Space>
 			</div>
 		</>
 	);

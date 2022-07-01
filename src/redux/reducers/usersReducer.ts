@@ -4,6 +4,7 @@ import { ActionsType, AppDispatch } from "../redux-store";
 
 const initialState = {
 	users: [] as IUser[],
+	friends: [] as IUser[],
 	pageSize: 15,
 	totalUsersCount: 0,
 	currentPage: 1,
@@ -42,6 +43,9 @@ const usersReducer = (
 		case "SET_USERS": {
 			return { ...state, users: action.users };
 		}
+		case "SET_FRIENDS": {
+			return { ...state, friends: action.friends };
+		}
 		case "SET_CURRENT_PAGE": {
 			return { ...state, currentPage: action.currentPage };
 		}
@@ -72,6 +76,7 @@ export const actionsUsers = {
 	followSuccess: (userId: string | null) => ({ type: "FOLLOW", userId } as const),
 	unfollowSuccess: (userId: string | null) => ({ type: "UNFOLLOW", userId } as const),
 	setUsers: (users: IUser[]) => ({ type: "SET_USERS", users } as const),
+	setFriends: (friends: IUser[]) => ({ type: "SET_FRIENDS", friends } as const),
 	setCurrentPage: (currentPage: number) => ({
 		type: "SET_CURRENT_PAGE",
 		currentPage,
@@ -91,12 +96,12 @@ export const actionsUsers = {
 	} as const),
 };
 
-export const requestUsers = (pageSize: number, currentPage: number) => {
+export const requestUsers = (pageSize: number, currentPage: number, friend: boolean | null = null) => {
 	return async (dispatch: AppDispatch) => {
 		dispatch(actionsUsers.toggleIsFetching(true));
-		const data = await usersAPI.getUsers(pageSize, currentPage);
+		const data = await (friend === null ? usersAPI.getUsers(pageSize, currentPage) : usersAPI.getFriends(pageSize, currentPage, friend))
 		dispatch(actionsUsers.toggleIsFetching(false));
-		dispatch(actionsUsers.setUsers(data.items));
+		dispatch(friend === null ? actionsUsers.setUsers(data.items) : actionsUsers.setFriends(data.items));
 		dispatch(actionsUsers.setTotalUsersCount(data.totalCount));
 	};
 };

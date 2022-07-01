@@ -1,6 +1,5 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import dialogReducer from "./reducers/dialogReducer";
-import friendsReducer from "./reducers/friendsReducer";
 import usersReducer from "./reducers/usersReducer";
 import profileReducer from "./reducers/profileReducer";
 import authReducer from "./reducers/authReducer";
@@ -9,8 +8,7 @@ import appReducer from "./reducers/appReducer";
 
 const rootReducer = combineReducers({
 	dialogPage: dialogReducer,
-	friendsPage: friendsReducer,
-	usersPage: usersReducer,
+	users: usersReducer,
 	profilePage: profileReducer,
 	auth: authReducer,
 	app: appReducer,

@@ -17,7 +17,13 @@ export const usersAPI = {
         return response.data;
       });
   },
-
+  getFriends(pageSize = 1, currentPage = 4, friend: null | boolean = null) {
+    return instanse
+      .get(`users?count=${pageSize}&page=${currentPage}` + (friend === null ? '' : `&friend=${friend}`))
+      .then((response) => {
+        return response.data;
+      });
+  },
   getUsersProfile(userId:string | null) {
     return profileAPI.getUsersProfile(userId);
   },

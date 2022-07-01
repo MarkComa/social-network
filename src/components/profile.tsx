@@ -11,12 +11,12 @@ import ProfileStatus from "./profileStatus";
 import { ProfileData, ProfileDataForm } from "./profileData";
 import { DownloadFileBtn } from "./DownloadFileBtn";
 import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
-import { Col, Row, Typography, Image, Space, Affix } from "antd";
+import { Col, Row, Typography, Image, Affix } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 
 const Profile = () => {
 	const profile = useAppSelector((state) => state.profilePage.profile);
-	const isFetching = useAppSelector((state) => state.usersPage.isFetching);
+	const isFetching = useAppSelector((state) => state.users.isFetching);
 	const status = useAppSelector((state) => state.profilePage.status);
 	const userIdMe = useAppSelector((state) => state.auth.userId);
 	const isEditMode = useAppSelector((state) => state.profilePage.isEditMode);
@@ -25,13 +25,15 @@ const Profile = () => {
 	let { userId } = useParams<{ userId: string }>();
 	const isOwner = !userId;
 
+	const getUsersProfile = (id: string | null) => {
+		dispatch(getUserStatus(id));
+		dispatch(getUserProfile(id));
+	}
 	const refreshProfile = () => {
 		if (!userId) {
-			dispatch(getUserStatus(userIdMe));
-			dispatch(getUserProfile(userIdMe));
+			getUsersProfile(userIdMe)
 		}
-		dispatch(getUserStatus(userId));
-		dispatch(getUserProfile(userId));
+		getUsersProfile(userId)
 	};
 
 	useEffect(() => {
