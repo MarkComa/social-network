@@ -20,7 +20,8 @@ import { Header } from "antd/lib/layout/layout";
 import { User } from "./components/user";
 import { profile } from "console";
 
-const Chat = React.lazy(() => import("./components/chat"));
+const Chat1 = React.lazy(() => import("./components/chat"));
+const Chat = React.lazy(() => import("./components/pages/chat"));
 const FriendsList = React.lazy(() => import("./components/friendsList"));
 const Profile = React.lazy(() => import("./components/profile"));
 
@@ -30,7 +31,9 @@ export const App: React.FC = () => {
 	const initialized = useAppSelector((state) => state.app.initialized);
 	const isAuth = useAppSelector((state) => state.auth.isAuth);
 	const login = useAppSelector((state) => state.auth.login);
-	const userName = useAppSelector(state => state.profilePage.profile?.fullName)
+	const userName = useAppSelector(
+		(state) => state.profilePage.profile?.fullName,
+	);
 	const [collapsed, setCollapsed] = useState(false);
 	const dispatch = useAppDispatch();
 
@@ -58,11 +61,12 @@ export const App: React.FC = () => {
 
 	const items: MenuItem[] = [
 		getItem(<Link to={"/profile"}>Профиль</Link>, "1", <UserOutlined />),
-		getItem(<Link to={"/users"}>Разрабочики</Link>, "2", <TeamOutlined/>),
-		getItem(<Link to={"/friends"}>Подписки</Link>, "3", <TeamOutlined/>),
+		getItem(<Link to={"/users"}>Разрабочики</Link>, "2", <TeamOutlined />),
+		getItem(<Link to={"/friends"}>Подписки</Link>, "3", <TeamOutlined />),
+		getItem(<Link to={"/chat"}>Чат</Link>, "4", <TeamOutlined />),
 		getItem(
 			<Login isAuth={isAuth} logout={logout} />,
-			"4",
+			"5",
 			<img
 				width='10'
 				height='10'
@@ -82,18 +86,24 @@ export const App: React.FC = () => {
 				<Menu theme='dark' mode='inline' items={items}></Menu>
 			</Sider>
 			<Layout className='site-layout'>
-				<Header><User login={login}/></Header>
+				<Header>
+					<User login={login} />
+				</Header>
 				<Content style={{ margin: "0 16px" }}>
 					<div
 						className='site-layout-background'
 						style={{ padding: 24, minHeight: 360 }}>
 						<Route
 							path='/dialogs/:friendId?'
-							render={withSuspense(Chat)}
+							render={withSuspense(Chat1)}
 						/>
 						<Route
 							path='/friends'
 							render={withSuspense(FriendsList)}
+						/>
+						<Route
+							path='/chat'
+							render={withSuspense(Chat)}
 						/>
 						<Route path='/dashboard' render={() => <Dashboard />} />
 						<Route path='/users' render={() => <Users />} />
