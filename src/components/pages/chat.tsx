@@ -1,11 +1,9 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
+import { sendMessage, startMessagesListening, stopMessagesListening } from "../../redux/reducers/chatSlice";
 
-const ws = new WebSocket(
-	"wss://social-network.samuraijs.com/handlers/ChatHandler.ashx",
-);
-
-type MessagesType = {
+export type MessagesType = {
 	message: string;
 	photo: string;
 	userId: number;
@@ -13,6 +11,13 @@ type MessagesType = {
 };
 
 const Chat = () => {
+	const dispatch = useAppDispatch()
+	useEffect(()=>{
+		dispatch(startMessagesListening())
+		return () => {
+			dispatch(stopMessagesListening())
+		}
+	},[])
 	return (
 		<>
 			<Messages />
@@ -24,13 +29,7 @@ const Chat = () => {
 export default Chat;
 
 export const Messages = () => {
-	const [messages, setMessages] = useState<MessagesType[]>([]);
-	useEffect(() => {
-		ws.addEventListener("message", (e) => {
-			const newMessages = JSON.parse(e.data);
-			setMessages((prevMessage) => [...prevMessage, ...newMessages]);
-		});
-	}, []);
+	const messages = useAppSelector(state => state.chat.messages)
 	return (
 		<div style={{ height: "700px", overflow: "auto" }}>
 			{messages.map((m, index) => (
@@ -54,18 +53,18 @@ export const Message: FC<{ message: MessagesType }> = ({ message }) => {
 };
 
 export const MessagesForm = () => {
-	const { register, handleSubmit, setValue } = useForm<{message: string}>();
-  const onSubmit: SubmitHandler<{message: string}> = ({message}) => {
-    if (!message) {
-      return
-    }
-    ws.send(message)
-    setValue('message', '')
-  }
+	const { register, handleSubmit, setValue } = useForm<{ message: string }>();
+	const onSubmit: SubmitHandler<{ message: string }> = ({ message }) => {
+		if (!message) {
+			return;
+		}
+		sendMessage(message)
+		setValue("message", "");
+	};
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<textarea {...register('message')} />
-      <input type="submit" value="send" />
+			<textarea {...register("message")} />
+			<input type='submit' value='send' />
 		</form>
 	);
 };

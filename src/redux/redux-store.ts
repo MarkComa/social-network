@@ -5,6 +5,7 @@ import profileReducer from "./reducers/profileReducer";
 import authReducer from "./reducers/authReducer";
 import { reducer as formReducer } from "redux-form";
 import appReducer from "./reducers/appReducer";
+import chatSlice from "./reducers/chatSlice";
 
 const rootReducer = combineReducers({
 	dialogPage: dialogReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
 	auth: authReducer,
 	app: appReducer,
 	form: formReducer,
+	chat: chatSlice
 });
 
 const store = configureStore({
