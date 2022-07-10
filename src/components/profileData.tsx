@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { updateUserProfile } from "../redux/reducers/profileReducer";
+import { updateUserProfile } from "../redux/reducers/profileSlice";
 import { ContactsType, ProfileType } from "../types/types";
 import { useAppDispatch } from "../redux/hooks/hooks";
 import { Button, Input, Space, Typography } from "antd";

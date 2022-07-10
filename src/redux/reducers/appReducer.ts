@@ -1,6 +1,6 @@
 import { AnyAction } from '@reduxjs/toolkit';
 import { AppDispatch } from './../redux-store';
-import { getAuth } from "./authReducer";
+import { getAuth } from "./authSlice";
 
 const INITIALIZED_SUCCESS = "INITIALIZED-SUCCESS";
 

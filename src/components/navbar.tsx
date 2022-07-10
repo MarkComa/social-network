@@ -7,7 +7,7 @@ import dashboard from "../assets/images/dashboard.svg";
 import charts from "../assets/images/charts.svg";
 import wallet from "../assets/images/wallet.svg";
 import { useAppSelector } from "../redux/hooks/hooks";
-import { logout } from "../redux/reducers/authReducer";
+import { logout } from "../redux/reducers/authSlice";
 
 const Navbar = () => {
 	const isAuth = useAppSelector((state) => state.auth.isAuth);

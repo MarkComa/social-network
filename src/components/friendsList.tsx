@@ -1,7 +1,7 @@
 import { Col, Row } from "antd";
-import { MouseEventHandler, useEffect } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
-import { actionsUsers, requestUsers } from "../redux/reducers/usersReducer";
+import { requestUsers, setCurrentPage } from "../redux/reducers/usersSlice";
 import { IUser } from "../types/types";
 import Pagination from "./common/pagginator";
 import UserCard from "./userCard";
@@ -25,7 +25,7 @@ const FriendsList = () => {
 		dispatch(requestUsers(pageSize, currentPage, true));
 	};
 	const onPageChanged = (pageNumber: number) => {
-		dispatch(actionsUsers.setCurrentPage(pageNumber));
+		dispatch(setCurrentPage(pageNumber));
 		dispatch(requestUsers(pageSize, pageNumber));
 	};
 

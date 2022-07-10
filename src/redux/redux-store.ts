@@ -1,16 +1,16 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import dialogReducer from "./reducers/dialogReducer";
-import usersReducer from "./reducers/usersReducer";
-import profileReducer from "./reducers/profileReducer";
-import authReducer from "./reducers/authReducer";
+import usersReducer from "./reducers/usersSlice";
+import authReducer from "./reducers/authSlice";
 import { reducer as formReducer } from "redux-form";
 import appReducer from "./reducers/appReducer";
 import chatSlice from "./reducers/chatSlice";
+import profileSlice from "./reducers/profileSlice";
 
 const rootReducer = combineReducers({
 	dialogPage: dialogReducer,
 	users: usersReducer,
-	profilePage: profileReducer,
+	profilePage: profileSlice,
 	auth: authReducer,
 	app: appReducer,
 	form: formReducer,

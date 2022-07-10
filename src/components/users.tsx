@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
-import { requestUsers, actionsUsers } from "../redux/reducers/usersReducer";
+import { requestUsers, setCurrentPage } from "../redux/reducers/usersSlice";
 import Pagination from "./common/pagginator";
 import UserCard from "./userCard";
 import Preloader from "./preloader";
@@ -23,7 +23,7 @@ export const Users = () => {
 	
 
 	const onPageChanged = (pageNumber: number) => {
-		dispatch(actionsUsers.setCurrentPage(pageNumber));
+		dispatch(setCurrentPage(pageNumber));
 		dispatch(requestUsers(pageSize, pageNumber));
 	};
 	// Перенести лишние селекторы и диспатчи в компонент userCard

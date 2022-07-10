@@ -1,4 +1,4 @@
-import { follow, unfollow } from "../redux/reducers/usersReducer";
+import { follow, unfollow } from "../redux/reducers/usersSlice";
 import { useAppSelector } from "../redux/hooks/hooks";
 import { Link } from "react-router-dom";
 import { IUser } from "../types/types";

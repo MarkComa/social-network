@@ -1,4 +1,4 @@
-import { login } from "../redux/reducers/authReducer";
+import { login } from "../redux/reducers/authSlice";
 import { Redirect } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";

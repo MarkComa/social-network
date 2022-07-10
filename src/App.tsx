@@ -14,7 +14,7 @@ import logoutIcon from "./assets/images/logout.svg";
 import { UserOutlined, TeamOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Layout, Menu } from "antd";
-import { logout } from "./redux/reducers/authReducer";
+import { logout } from "./redux/reducers/authSlice";
 import { Login } from "./components/login";
 import { Header } from "antd/lib/layout/layout";
 import { User } from "./components/user";

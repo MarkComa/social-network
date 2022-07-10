@@ -1,10 +1,10 @@
 import { ChangeEventHandler, useEffect } from "react";
 import {
-	actionsProfile,
 	getUserProfile,
 	getUserStatus,
 	saveAvatar,
-} from "../redux/reducers/profileReducer";
+	setEditMode,
+} from "../redux/reducers/profileSlice";
 import { Redirect, useParams } from "react-router-dom";
 import Preloader from "./preloader";
 import ProfileStatus from "./profileStatus";
@@ -41,7 +41,7 @@ const Profile = () => {
 	}, []);
 	useEffect(() => {
 		refreshProfile();
-		userId && dispatch(actionsProfile.setEditMode(false));
+		userId && dispatch(setEditMode(false));
 	}, [userId]);
 
 	if (!profile) {
@@ -60,7 +60,7 @@ const Profile = () => {
 	};
 
 	const onSetEditMode = () => {
-		dispatch(actionsProfile.setEditMode(!isEditMode));
+		dispatch(setEditMode(!isEditMode));
 	};
 	const { Title } = Typography;
 	return (

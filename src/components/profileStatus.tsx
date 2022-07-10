@@ -1,7 +1,7 @@
 import Title from "antd/lib/typography/Title";
 import { useState, useEffect, ChangeEventHandler, FocusEventHandler, MouseEventHandler } from "react";
 import { useAppDispatch } from "../redux/hooks/hooks";
-import { updateUserStatus } from "../redux/reducers/profileReducer";
+import { updateUserStatus } from "../redux/reducers/profileSlice";
 
 interface Props {
   status: string | null;
